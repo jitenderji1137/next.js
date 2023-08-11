@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link';
 import { useEffect, useState } from "react";
 import Slider from '@/components/slider/slider'
 import EmptySlider from '@/components/slider/emptyslider'
@@ -9,7 +10,7 @@ export default function Home() {
   const [banners,bannersvalue] = useState([]);
   const [recentuploaded,recentuploadedvalue] = useState([]);
   const [webseries,webseriesvalue] = useState([]);
-  const [movies,romanticvalue] = useState([]);
+  const [romantic,romanticvalue] = useState([]);
   const [action,actionvalue] = useState([]);
   const [comedy,comedyvalue] = useState([]);
   const [crime,crimevalue] = useState([]);
@@ -34,70 +35,70 @@ export default function Home() {
       }
   }
   const webseriesdata = async ()=>{    
-    let ArrData = await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).eq("MainCategory","WebSeries").range(0,19);
+    let ArrData = await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).in("MainCategory",['WebSeries']).range(0,19);
     if(ArrData.data){
       localStorage.setItem("HomePageWebSeriesData", JSON.stringify(ArrData.data));
       webseriesvalue(ArrData.data);
     }
   }
   const romanticdata = async ()=>{    
-    let ArrData = await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).eq("Geans","Romantic").range(0,19);
+    let ArrData = await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).in("Geans",['Romantic']).range(0,19);
     if(ArrData.data){
       localStorage.setItem("HomePageRomanticData", JSON.stringify(ArrData.data));
       romanticvalue(ArrData.data);
     }
   }
   const actiondata = async ()=>{    
-    let ArrData = await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).eq("Geans","Action").range(0,19);
+    let ArrData = await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).in("Geans",['Action']).range(0,19);
     if(ArrData.data){
       localStorage.setItem("HomePageActionData", JSON.stringify(ArrData.data));
       actionvalue(ArrData.data);
     }
   }
   const comedydata = async ()=>{    
-    let ArrData = await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).eq("Geans","Comedy").range(0,19);
+    let ArrData = await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).in("Geans",['Comedy']).range(0,19);
     if(ArrData.data){
       localStorage.setItem("HomePageComedyData", JSON.stringify(ArrData.data));
       comedyvalue(ArrData.data);
     }
   }
   const crimedata = async ()=>{    
-    let ArrData = await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).eq("Geans","Crime").range(0,19);
+    let ArrData = await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).in("Geans",['Crime']).range(0,19);
     if(ArrData.data){
       localStorage.setItem("HomePageCrimeData", JSON.stringify(ArrData.data));
       crimevalue(ArrData.data);
     }
   }
   const dramadata = async ()=>{    
-    let ArrData = await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).eq("Geans","Drama").range(0,19);
+    let ArrData = await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).in("Geans",['Drama']).range(0,19);
     if(ArrData.data){
       localStorage.setItem("HomePageDramaData", JSON.stringify(ArrData.data));
       dramavalue(ArrData.data);
     }
   }
   const horrordata = async ()=>{    
-    let ArrData = await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).eq("Geans","Horror").range(0,19);
+    let ArrData = await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).in("Geans",['Horror']).range(0,19);
     if(ArrData.data){
       localStorage.setItem("HomePageHorrorData", JSON.stringify(ArrData.data));
       horrorvalue(ArrData.data);
     }
   }
   const traillerdata = async ()=>{    
-    let ArrData = await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).eq("Geans","Thriller").range(0,19);
+    let ArrData = await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).in("Geans",['Thriller']).range(0,19);
     if(ArrData.data){
       localStorage.setItem("HomePageTraillerData", JSON.stringify(ArrData.data));
       trailerdata(ArrData.data);
     }
   }
   const adventuredata = async ()=>{    
-    let ArrData = await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).eq("Geans","Adventure").range(0,19);
+    let ArrData = await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).in("Geans",['Adventure']).range(0,19);
     if(ArrData.data){
       localStorage.setItem("HomePageAdventureData", JSON.stringify(ArrData.data));
       adventurevalue(ArrData.data);
     }
   }
   const adultdata = async ()=>{    
-    let ArrData = await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).eq("MainCategory","Adult").range(0,19);
+    let ArrData = await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).in("MainCategory",['Adult']).range(0,19);
     if(ArrData.data){
       localStorage.setItem("HomePageAdultData", JSON.stringify(ArrData.data));
       adultvalue(ArrData.data);
@@ -153,7 +154,7 @@ export default function Home() {
                   <span>{banners.Duration}</span>
                   <span> | </span>
                   <span>{banners.Geans} </span>
-                  <button className='bg-red-700 hover:bg-red-600 px-4 py-2 mx-2.5 text-white rounded-lg'> Wacth </button>
+                  <Link href={`/player/${banners.Link}`}><button className='bg-red-700 hover:bg-red-600 px-4 py-2 mx-2.5 text-white rounded-lg' > Wacth </button></Link>
                 </div>
                 <div>
                   <div className='text-base pt-4'>{banners.Paragraph}</div>
@@ -169,17 +170,17 @@ export default function Home() {
         </div>
         <div className='divshadow'>
           <div>
-              {recentuploaded.length !== 0?<Slider data={recentuploaded} text="Recent Uploaded ..."/>:<EmptySlider text="Recent Uploaded ..."/>}
-              {webseries.length !== 0?<Slider data={webseries} text="Web Series ..."/>:<EmptySlider text="Recent Uploaded ..."/>}
-              {movies.length !== 0?<Slider data={movies} text="Movies ..."/>:<EmptySlider text="Recent Uploaded ..."/>}
-              {action.length !== 0?<Slider data={action} text="Action ..."/>:<EmptySlider text="Recent Uploaded ..."/>}
-              {comedy.length !== 0?<Slider data={comedy} text="Comedy ..."/>:<EmptySlider text="Recent Uploaded ..."/>}
-              {crime.length !== 0?<Slider data={crime} text="Crime ..."/>:<EmptySlider text="Recent Uploaded ..."/>}
-              {drame.length !== 0?<Slider data={drame} text="Drama ..."/>:<EmptySlider text="Recent Uploaded ..."/>}
-              {horror.length !== 0?<Slider data={horror} text="Horror ..."/>:<EmptySlider text="Recent Uploaded ..."/>}
-              {trailer.length !== 0?<Slider data={trailer} text="Trailer ..."/>:<EmptySlider text="Recent Uploaded ..."/>}
-              {adventure.length !== 0?<Slider data={adventure} text="Adventure ..."/>:<EmptySlider text="Recent Uploaded ..."/>}
-              {adult.length !== 0?<Slider data={adult} text="Adult ..."/>:<EmptySlider text="Recent Uploaded ..."/>}
+              {recentuploaded.length !== 0?<Slider data={recentuploaded} text="Recent Uploaded ..." link={"HomePageRecentUpload"}/>:<EmptySlider text="Recent Uploaded ..."/>}
+              {webseries.length !== 0?<Slider data={webseries} text="Web Series ..." link={"HomePageWebSeriesData"}/>:<EmptySlider text="Web Series ..."/>}
+              {romantic.length !== 0?<Slider data={romantic} text="Romantic ..." link={"HomePageRomanticData"}/>:<EmptySlider text="Romantic ..."/>}
+              {action.length !== 0?<Slider data={action} text="Action ..." link={"HomePageActionData"}/>:<EmptySlider text="Action ..."/>}
+              {comedy.length !== 0?<Slider data={comedy} text="Comedy ..." link={"HomePageComedyData"}/>:<EmptySlider text="Comedy ..."/>}
+              {crime.length !== 0?<Slider data={crime} text="Crime ..." link={"HomePageCrimeData"}/>:<EmptySlider text="Crime ..."/>}
+              {drame.length !== 0?<Slider data={drame} text="Drama ..." link={"HomePageDramaData"}/>:<EmptySlider text="Drama ..."/>}
+              {horror.length !== 0?<Slider data={horror} text="Horror ..." link={"HomePageHorrorData"}/>:<EmptySlider text="Horror ..."/>}
+              {trailer.length !== 0?<Slider data={trailer} text="Trailler ..." link={"HomePageTraillerData"}/>:<EmptySlider text="Trailler ..."/>}
+              {adventure.length !== 0?<Slider data={adventure} text="Adventure ..." link={"HomePageAdventureData"}/>:<EmptySlider text="Adventure ..."/>}
+              {adult.length !== 0?<Slider data={adult} text="Adult ..." link={"HomePageAdultData"}/>:<EmptySlider text="Adult ..."/>}
           </div>
         </div>
       </div>

@@ -4,19 +4,20 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { createClient } from "@supabase/supabase-js";
 export default function Player() {
-  const [ID,IDvalue] = useState(null);
-  const [FileID,FileIDvalue] = useState(null);
   const [iframe,iframevalue] = useState(null);
   const [video,videodata] = useState([]);
+  const [image,imagevalue] = useState([]);
+  const [Thumbnail,Thumbnailvalue] = useState(true);
   const router = useRouter();
   const { player } = router.query;
   const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_KEY);
   const banner = async ()=>{
-    let Arrdata = await supabase.from('Free-Netflix-Darabase').select('*').eq('ID',player[0]);
+    let Arrdata = await supabase.from('Free-Netflix-Darabase').select('*').eq('ID',player);
     if(Arrdata.data){
       videodata(Arrdata.data[0]);
+      imagevalue(Arrdata.data[0].Image);
       if(Arrdata.data[0].Plateform === "filemoon"){
-        iframevalue(`https://filemoon.sx/e/${Arrdata.data[0].FileID}`);
+        iframevalue(`https://filemoon.sx/e/${Arrdata.data[0].FileID}?poster=${Arrdata.data[0].Image}`);
       }
       else if(Arrdata.data[0].Plateform === "Youtube"){
         iframevalue(`https://www.youtube.com/embed/${Arrdata.data[0].FileID}`);
@@ -25,8 +26,6 @@ export default function Player() {
   }
   useEffect(()=>{
     if(player !== undefined){
-      IDvalue(player[0]);
-      FileIDvalue(player[1]);
       banner();
     }},[player])
   return (
@@ -37,12 +36,12 @@ export default function Player() {
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link rel="icon" href="/logo.png" />
           </Head>
-        {FileID&&ID&&video&&iframe?
+        {video&&image&&iframe?
           <>
-            <div id='div1'>
-              <iframe className="w-full h-full absolute top-0 left-0" src={iframe}></iframe>
+            <div id='div1' className='aspect-video rounded-lg'>
+              <iframe frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" title="" width="100%" height="100%" src={iframe}></iframe>
             </div>
-          </>:<></>
+          </>:<><div id='div1' className='aspect-video rounded-lg'></div></>
         }
     </>
   );
