@@ -1,23 +1,67 @@
 import { useRouter } from 'next/router';
-import Image from 'next/image';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { createClient } from "@supabase/supabase-js";
+import {Make_A_Fetch_Request} from '@/components/request/makerequest';
+import ViewAllRender from '@/components/viewall/viewall';
+import EmptyViewAllRender from '@/components/viewall/emptyviewall';
 export default function ViewAll(){
-    const array =  Array.from({ length: 50 }, (_, index) => index);
     const [pagedata,pagedatavalue] = useState([]);
     const router = useRouter();
-    const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_KEY);
     const { viewall } = router.query;
     const FetchData = async ()=>{
         const start = (+(viewall[1])-1)*49;
         const end = +(viewall[1])*49;
-        if(viewall[0] === "HomePageRecentUpload"){
-            let ArrData = await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).in('MainCategory', ['WebSeries', 'Movies']).range(start,end);
-            if(ArrData.data){
-                pagedatavalue(ArrData.data);
-            }
-        }
+        switch(viewall[0]){
+            case "HomePageRecentUpload":
+                const fetchdat = await Make_A_Fetch_Request("MainCategory",['WebSeries', 'Movies'],start,end);
+                pagedatavalue(fetchdat);
+                break;
+            case "HomePageWebSeriesData":
+                const fetchdat1 = await Make_A_Fetch_Request("MainCategory",['WebSeries'],start,end);
+                pagedatavalue(fetchdat1);
+                break;
+            case "HomePageRomanticData":
+                const fetchdat2 = await Make_A_Fetch_Request("Geans",['Romantic'],start,end);
+                pagedatavalue(fetchdat2);
+                break;
+            case "HomePageActionData":
+                const fetchdat3 = await Make_A_Fetch_Request("Geans",['Action'],start,end);
+                pagedatavalue(fetchdat3);
+                break;
+            case "HomePageComedyData":
+                const fetchdat4 = await Make_A_Fetch_Request("Geans",['Comedy'],start,end);
+                pagedatavalue(fetchdat4);
+                break;
+            case "HomePageCrimeData":
+                const fetchdat5 = await Make_A_Fetch_Request("Geans",['Crime'],start,end);
+                pagedatavalue(fetchdat5);
+                break;
+            case "HomePageDramaData":
+                const fetchdat6 = await Make_A_Fetch_Request("Geans",['Drama'],start,end);
+                pagedatavalue(fetchdat6);
+                break;
+            case "HomePageHorrorData":
+                const fetchdat7 = await Make_A_Fetch_Request("Geans",['Horror'],start,end);
+                pagedatavalue(fetchdat7);
+                break;
+            case "HomePageTraillerData":
+                const fetchdat8 = await Make_A_Fetch_Request("Geans",['Thriller'],start,end);
+                pagedatavalue(fetchdat8);
+                break;
+            case "HomePageAdventureData":
+                const fetchdat9 = await Make_A_Fetch_Request("Geans",['Adventure'],start,end);
+                pagedatavalue(fetchdat9);
+                break;
+            case "HomePageAdultData":
+                const fetchdat10 = await Make_A_Fetch_Request("MainCategory",['Adult'],start,end);
+                pagedatavalue(fetchdat10);
+                break;
+            case "movies":
+                const fetchdat11 = await Make_A_Fetch_Request("MainCategory",['Movies'],start,end);
+                pagedatavalue(fetchdat11);
+                break;
+            default:
+                router.push("/");
+            }        
     }
     useEffect(()=>{
         if(viewall !== undefined){
@@ -28,23 +72,7 @@ export default function ViewAll(){
         <>
            <div className='mt-24'>
             <div className='m-5'>
-                {pagedata.length !==0?<>
-                <div className='grid grid-cols-5 gap-3'>
-                    {pagedata.map((item)=>{
-                        return <div key={item.ID} className='aspect-video'>
-                            <Link href={`/player/${item.ID}`}><Image className='rounded h-full w-full cursor-pointer transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-125 hover:bg-indigo-500 duration-300' src={item.Image} alt={item.Title} title={item.Title} width={500} height={500} /></Link>
-                        </div>
-                    })}
-                </div>
-                </>:<>
-                <div className='grid grid-cols-5 gap-3'>
-                    {array.map((item)=>{
-                        return <div key={item} className='aspect-video'>
-                            <Image className='rounded h-full w-full cursor-pointer transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-125 hover:bg-indigo-500 duration-300' src={process.env.NEXT_PUBLIC_LOADING_IMAGE} alt="Loading..." width={500} height={500} />
-                        </div>
-                    })}
-                </div>
-                </>}
+                {pagedata.length !==0?<><ViewAllRender data={pagedata}/></>:<><EmptyViewAllRender/></>}
             </div>
            </div>
         </>
