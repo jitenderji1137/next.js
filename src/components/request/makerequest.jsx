@@ -19,7 +19,7 @@ export const Make_A_Search_Request = async(part2,start,end)=>{
 }
 export const Make_A_Song_Request = async(start,end)=>{
     const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_KEY);
-    let ArrData = await supabase.from('Free-Netflix-Songs').select('*').range(start,end);
+    let ArrData = await supabase.from('Free-Netflix-Songs').select('*').order('id', { ascending: false }).range(start,end);
     console.log(ArrData);
     if(ArrData.data){
         return ArrData.data;

@@ -26,59 +26,35 @@ export default function Home() {
   const banner = async ()=>{
     let Arrdata = await supabase.from('Free-Netflix-Banner').select('*').eq('id',randomNumber);
     if(Arrdata.data){
-      localStorage.setItem("HomePageBanners", JSON.stringify(Arrdata.data[0]));
       bannersvalue(Arrdata.data[0]);
     }
   }
   const data = async ()=>{    
     const fetchdat = await Make_A_Fetch_Request("MainCategory",['WebSeries', 'Movies'],start,end);
-    localStorage.setItem("HomePageRecentUpload", JSON.stringify(fetchdat));
     recentuploadedvalue(fetchdat); 
     const fetchdat1 = await Make_A_Fetch_Request("MainCategory",['WebSeries'],start,end);
-    localStorage.setItem("HomePageWebSeriesData", JSON.stringify(fetchdat1));
     webseriesvalue(fetchdat1);   
     const fetchdat2 = await Make_A_Fetch_Request("Geans",['Romantic'],start,end);
-    localStorage.setItem("HomePageRomanticData", JSON.stringify(fetchdat2));
     romanticvalue(fetchdat2);  
     const fetchdat3 = await Make_A_Fetch_Request("Geans",['Action'],start,end);
-    localStorage.setItem("HomePageActionData", JSON.stringify(fetchdat3));
     actionvalue(fetchdat3);  
     const fetchdat4 = await Make_A_Fetch_Request("Geans",['Comedy'],start,end);
-    localStorage.setItem("HomePageComedyData", JSON.stringify(fetchdat4));
     comedyvalue(fetchdat4);   
     const fetchdat5 = await Make_A_Fetch_Request("Geans",['Crime'],start,end);
-    localStorage.setItem("HomePageCrimeData", JSON.stringify(fetchdat3));
     crimevalue(fetchdat5);   
     const fetchdat6 = await Make_A_Fetch_Request("Geans",['Drama'],start,end);
-    localStorage.setItem("HomePageDramaData", JSON.stringify(fetchdat6));
     dramavalue(fetchdat6);  
     const fetchdat7 = await Make_A_Fetch_Request("Geans",['Horror'],start,end);
-    localStorage.setItem("HomePageHorrorData", JSON.stringify(fetchdat7));
     horrorvalue(fetchdat7);   
     const fetchdat8 = await Make_A_Fetch_Request("Geans",['Thriller'],start,end);
-    localStorage.setItem("HomePageTraillerData", JSON.stringify(fetchdat8));
     trailerdata(fetchdat8);  
     const fetchdat9 = await Make_A_Fetch_Request("Geans",['Adventure'],start,end);
-    localStorage.setItem("HomePageAdventureData", JSON.stringify(fetchdat9));
     adventurevalue(fetchdat9);  
     const fetchdat10 = await Make_A_Fetch_Request("MainCategory",['Adult'],start,end);
-    localStorage.setItem("HomePageAdultData", JSON.stringify(fetchdat10));
     adultvalue(fetchdat10);
   }
   useEffect(()=>{
-      bannersvalue(JSON.parse(localStorage.getItem("HomePageBanners")) || []);
       banner();
-      recentuploadedvalue(JSON.parse(localStorage.getItem("HomePageRecentUpload")) || []);
-      webseriesvalue(JSON.parse(localStorage.getItem("HomePageWebSeriesData")) || []);
-      romanticvalue(JSON.parse(localStorage.getItem("HomePageRomanticData")) || []);
-      actionvalue(JSON.parse(localStorage.getItem("HomePageActionData")) || []);
-      comedyvalue(JSON.parse(localStorage.getItem("HomePageComedyData")) || []);
-      crimevalue(JSON.parse(localStorage.getItem("HomePageCrimeData")) || []);
-      dramavalue(JSON.parse(localStorage.getItem("HomePageDramaData")) || []);
-      horrorvalue(JSON.parse(localStorage.getItem("HomePageHorrorData")) || []);
-      trailerdata(JSON.parse(localStorage.getItem("HomePageTraillerData")) || []);
-      adventurevalue(JSON.parse(localStorage.getItem("HomePageAdventureData")) || []);
-      adultvalue(JSON.parse(localStorage.getItem("HomePageAdultData")) || []);
       data();
   },[])
   return (
