@@ -121,6 +121,17 @@ nav>span>a>h1{
   height: 50px;
 }
 /* here nav bar end ----- */
+
+
+/* here banner styling satrts */
+.justforbanner{
+  display: none;
+}
+.flexofnav{
+  display: flex;
+  height: 80vh;
+}
+/* here banner styling ends */
 .banner{
   background: linear-gradient(90deg,#181818 10%,hsla(0,0%,9%,.98) 20%,hsla(0,0%,9%,.97) 25%,hsla(0,0%,9%,.95) 35%,hsla(0,0%,9%,.94) 40%,hsla(0,0%,9%,.92) 45%,hsla(0,0%,9%,.9) 50%,hsla(0,0%,9%,.87) 55%,hsla(0,0%,9%,.82) 60%,hsla(0,0%,9%,.75) 65%,hsla(0,0%,9%,.63) 70%,hsla(0,0%,9%,.45) 75%,hsla(0,0%,9%,.27) 80%,hsla(0,0%,9%,.15) 85%,hsla(0,0%,9%,.08) 90%,hsla(0,0%,9%,.03) 95%,hsla(0,0%,9%,0));
 }
@@ -143,10 +154,29 @@ nav>span>a>h1{
   nav>span>a>h1 {
     font-size: 40px;
   }
+  .banner{
+    padding: 100px 20px;
+  }
 }
 @media screen and (max-width: 1000px){
   .navshadow>span:nth-child(2)>ul {
     width: 100%;
+  }
+  .justforbanner{
+    display: flex;
+    padding-top: 56.25%;
+    background: linear-gradient(90deg,#181818 10%,hsla(0,0%,9%,.98) 20%,hsl(0deg 0% 9% / 91%) 25%,hsl(0deg 0% 9% / 79%) 35%,hsl(0deg 0% 9% / 58%) 40%,hsl(0deg 0% 9% / 53%) 45%,hsl(0deg 0% 9% / 20%) 50%,hsl(0deg 0% 9% / 0%) 55%,hsl(0deg 0% 9% / 0%) 60%,hsl(0deg 0% 9% / 0%) 65%,hsl(0deg 0% 9% / 0%) 70%,hsl(0deg 0% 9% / 0%) 75%,hsl(0deg 0% 9% / 21%) 80%,hsl(0deg 0% 9% / 0%) 85%,hsl(0deg 0% 9% / 0%) 90%,hsl(0deg 0% 9% / 0%) 95%,hsl(0deg 0% 9% / 0%));  }
+  .banner{
+    display: none;
+  }
+  .flexofnav{
+    height: 0vh;
+  }
+  .h-40{
+    height: 9rem;
+  }
+  .px-5{
+    padding-left: 0;
   }
 }
 @media screen and (max-width: 900px){
@@ -178,6 +208,9 @@ nav>span>a>h1{
   .navshadow>span:nth-child(3)>span:nth-child(1){
     font-size: 20px;
   }
+  .h-40{
+    height: 8rem;
+  }
 }
 @media screen and (max-width: 600px){
   .navshadow>span:nth-child(2) {
@@ -191,5 +224,32 @@ nav>span>a>h1{
   }
   .navshadow>span:nth-child(3){
     width: 20%;
+  }
+  .h-40{
+    height: 7rem;
+  }
+  .text-2xl{
+    font-size: 1rem;
+  }
+}
+@media screen and (max-width: 500px){
+  .h-40{
+    height: 6rem;
+  }
+  .mt-5{
+    margin-top: 0;
+  }
+  .forfiveone{
+    margin-top: 1rem;
+  }
+}
+@media screen and (max-width: 400px){
+  .h-40{
+    height: 5rem;
+  }
+}
+@media screen and (max-width: 300px){
+  .h-40{
+    height: 4rem;
   }
 }

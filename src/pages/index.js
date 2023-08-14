@@ -68,6 +68,7 @@ export default function Home() {
       <Image className='fixed z-0 w-screen' src={banners.Big_Image} alt='banner' width={3000} height={3000} />
       <div className="z-1 relative">
         <MainBanners banners={banners}/>
+        <div className='justforbanner'></div>
         <div className='divshadow'>
           <div>
               {recentuploaded.length !== 0?<Slider data={recentuploaded} text="Recent Uploaded ..." link={"HomePageRecentUpload"}/>:<EmptySlider text="Recent Uploaded ..."/>}

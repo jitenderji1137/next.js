@@ -3,7 +3,7 @@ import Image from 'next/image';
 export default function MainBanners({banners}){
     return(
         <>
-        <div className='flex' style={{height:"80vh"}}>
+        <div className='flexofnav'>
           <div className='banner w-6/12 flex items-center pl-14 max-w-lg'>
             <div>
               <div><Image src={banners.Small_Image} priority={false} alt='banner' width={400} height={400}/></div>

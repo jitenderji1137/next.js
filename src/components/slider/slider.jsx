@@ -6,7 +6,7 @@ export default function Slider({data,text,link}) {
             <div>
                 <div className='px-5 flex justify-between'>
                     <span className='mt-3 font-mono text-2xl font-black cursor-default'>{text}</span>
-                    <Link href={`/viewall/${link}/1`}><span className='font-sans text-fuchsia-500 mt-5 font-medium text-base cursor-pointer'>More &#x276F;&#x276F;</span></Link>
+                    <Link href={`/viewall/${link}/1`} className='flex'><span className='font-sans text-fuchsia-500 mt-5 font-medium text-base cursor-pointer forfiveone'>More &#x276F;&#x276F;</span></Link>
                 </div>
                 <div className="flex flex-nowrap overflow-x-scroll overflow-y-hidden scroll-smooth w-screen px-5 x-scrollbar">
                     {data.map((item) => (
