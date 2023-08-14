@@ -162,6 +162,9 @@ nav>span>a>h1{
   .navshadow>span:nth-child(2)>ul {
     width: 100%;
   }
+  .grid-cols-5 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
   .justforbanner{
     display: flex;
     padding-top: 56.25%;
@@ -211,6 +214,9 @@ nav>span>a>h1{
   .h-40{
     height: 8rem;
   }
+  .grid-cols-5 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 @media screen and (max-width: 600px){
   .navshadow>span:nth-child(2) {
@@ -231,25 +237,24 @@ nav>span>a>h1{
   .text-2xl{
     font-size: 1rem;
   }
+  .m-5{
+    margin: 0;
+  }
 }
 @media screen and (max-width: 500px){
-  .h-40{
-    height: 6rem;
-  }
   .mt-5{
     margin-top: 0;
   }
   .forfiveone{
     margin-top: 1rem;
   }
-}
-@media screen and (max-width: 400px){
-  .h-40{
-    height: 5rem;
+  .text-base{
+    font-size: 0.8rem;
   }
-}
-@media screen and (max-width: 300px){
-  .h-40{
-    height: 4rem;
+  .text-2xl{
+    font-size: 0.8rem;
+  }
+  .grid-cols-5 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

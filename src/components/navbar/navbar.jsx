@@ -8,7 +8,7 @@ export default function Navbar() {
     return (
       <>
       <nav className="navshadow">
-        <span><Link href="/"><h1>Free Netflix</h1></Link></span>
+        <span><Link href="/"><h1 style={{fontFamily:"Piedra"}}>Free Netflix</h1></Link></span>
         <span>
             <ul>
                 <li><Link href="/viewall/movies/1">Movies</Link></li>
