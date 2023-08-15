@@ -220,6 +220,9 @@ nav>span>a>h1{
   .grid-cols-5 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+  .backgroundtransprant{
+    width: 100%;
+  }
 }
 @media screen and (max-width: 600px){
   .navshadow>span:nth-child(2) {
@@ -243,6 +246,12 @@ nav>span>a>h1{
   .m-5{
     margin: 0;
   }
+  .backgroundtransprant>form>a{
+    display: none;
+  }
+  .backgroundtransprant{
+    margin: 0 5px 0 0;
+  }
 }
 @media screen and (max-width: 500px){
   .mt-5{
@@ -259,5 +268,8 @@ nav>span>a>h1{
   }
   .grid-cols-5 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .backgroundtransprant{
+    border-radius: 10px;
   }
 }

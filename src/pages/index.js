@@ -7,7 +7,6 @@ import {Make_A_Fetch_Request} from '@/components/request/makerequest';
 import EmptySlider from '@/components/slider/emptyslider'
 import { createClient } from "@supabase/supabase-js";
 export default function Home() {
-  var randomNumber = Math.floor(Math.random() * 4) + 1;
   const [banners,bannersvalue] = useState([]);
   const [recentuploaded,recentuploadedvalue] = useState([]);
   const [webseries,webseriesvalue] = useState([]);
@@ -24,6 +23,7 @@ export default function Home() {
   const end = 19;
   const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_KEY);
   const banner = async ()=>{
+    var randomNumber = Math.floor(Math.random() * 4) + 1;
     let Arrdata = await supabase.from('Free-Netflix-Banner').select('*').eq('id',randomNumber);
     if(Arrdata.data){
       bannersvalue(Arrdata.data[0]);
