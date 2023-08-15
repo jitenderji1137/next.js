@@ -271,5 +271,6 @@ nav>span>a>h1{
   }
   .backgroundtransprant{
     border-radius: 10px;
+    border-color: red;
   }
 }
