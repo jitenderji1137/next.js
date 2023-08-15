@@ -189,6 +189,9 @@ nav>span>a>h1{
   .navshadow>span:nth-child(3) {
     width: 20%;
   }
+  #div1 {
+    width: 100vw;
+  }
 }
 @media screen and (max-width: 800px){
   nav>span>a>h1 {
