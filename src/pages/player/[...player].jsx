@@ -2,13 +2,13 @@ import Head from 'next/head'
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { createClient } from "@supabase/supabase-js";
+const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_KEY);
 export default function Player() {
   const [iframe,iframevalue] = useState(null);
   const [video,videodata] = useState([]);
   const [image,imagevalue] = useState([]);
   const router = useRouter();
   const { player } = router.query;
-  const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_KEY);
   const banner = async ()=>{
     let Arrdata = await supabase.from('Free-Netflix-Darabase').select('*').eq('ID',player[0]);
     if(Arrdata.data){
