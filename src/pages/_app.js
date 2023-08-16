@@ -2,6 +2,7 @@ import '@/styles/globals.css'
 import Head from 'next/head'
 import Script from 'next/script'
 import Navbar from '@/components/navbar/navbar'
+import Footer from '@/components/footer/footer'
 export default function App({ Component, pageProps }) {
   return (
     <>
@@ -13,6 +14,7 @@ export default function App({ Component, pageProps }) {
           </Head>
           <Navbar/>
           <Component {...pageProps} />
+          <Footer/>
           <Script type='text/javascript' src='//toothbrushlimbperformance.com/8c/89/a3/8c89a37d7a271d17f9442787e948475f.js'></Script>
       </html>
     </>

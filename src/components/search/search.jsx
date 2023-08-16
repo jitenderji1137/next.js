@@ -6,6 +6,7 @@ import Link from "next/link";
 export default function SearchBar({button}) {
     const [searchQuery, setSearchQuery] = useState('');
     const router = useRouter();
+    console.log("working up to here")
     return (
         <>
             <div onClick={()=>{button(false)}} className="fixed w-screen h-screen backgroundtransprant flex justify-center items-center z-20">

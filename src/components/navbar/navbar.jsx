@@ -4,7 +4,7 @@ import { BiSearchAlt2 } from 'react-icons/bi';
 import SearchBar from '@/components/search/search'
 import { useState } from "react";
 export default function Navbar() {
-  const [searchbar,searchbarvalue]  =useState(false);
+  const [searchbar,searchbarvalue] = useState(false);
     return (
       <>
       <nav className="navshadow">

@@ -26,6 +26,11 @@ export default function Search() {
          {pagedata.length !==0?<><ViewAllRender data={pagedata}/></>:<><EmptyViewAllRender/></>}
      </div>
     </div>
+    {pagedata.length !==0?<><div className='flex mb-20 w-full justify-center items-center'>
+            <button className='bg-red-700 p-2 rounded-md m-3' style={{width:"60px"}} disabled={+search[1]===1} onClick={()=>{if(+search[1]>1){router.push(`/search/${search[0]}/${+search[1]-1}`)}}}>Back</button>
+            <button className='bg-red-700 p-2 rounded-md m-3' style={{width:"60px"}} disabled>{search[1]}</button>
+            <button className='bg-red-700 p-2 rounded-md m-3' style={{width:"60px"}} onClick={()=>{router.push(`/search/${search[0]}/${+search[1]+1}`)}}>Next</button>
+    </div></>:<></>}
  </>
   );
 }

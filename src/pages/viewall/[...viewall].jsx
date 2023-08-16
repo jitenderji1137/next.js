@@ -75,10 +75,10 @@ export default function ViewAll(){
                 {pagedata.length !==0?<><ViewAllRender data={pagedata}/></>:<><EmptyViewAllRender/></>}
             </div>
            </div>
-           {pagedata.length !==0?<><div className='flex m-5 w-full justify-center items-center'>
-            <button className='p-10' onClick={()=>{if(+viewall[1]>1){router.push(`/viewall/${viewall[0]}/${+viewall[1]-1}`)}}}>Back</button>
-            <button className='p-10'>{viewall[1]}</button>
-            <button className='p-10' onClick={()=>{router.push(`/viewall/${viewall[0]}/${+viewall[1]+1}`)}}>Next</button>
+           {pagedata.length !==0?<><div className='flex mb-20 w-full justify-center items-center'>
+            <button className='bg-red-700 p-2 rounded-md m-3' style={{width:"60px"}} disabled={+viewall[1]===1} onClick={()=>{if(+viewall[1]>1){router.push(`/viewall/${viewall[0]}/${+viewall[1]-1}`)}}}>Back</button>
+            <button className='bg-red-700 p-2 rounded-md m-3' style={{width:"60px"}} disabled>{viewall[1]}</button>
+            <button className='bg-red-700 p-2 rounded-md m-3' style={{width:"60px"}} onClick={()=>{router.push(`/viewall/${viewall[0]}/${+viewall[1]+1}`)}}>Next</button>
            </div></>:<></>}
            
         </>

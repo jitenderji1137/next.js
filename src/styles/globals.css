@@ -59,7 +59,7 @@ a {
 }
 /* here nav bar start ----- */
 .navshadow{
-  background-color: rgba(0,0,0,.41);
+  background-color: rgba(0,0,0,.45);
   box-shadow: 20px 9px 70px 20px rgba(0,0,0,.56);
   display: flex;
   position: fixed;
@@ -161,6 +161,27 @@ nav>span>a>h1{
   box-shadow: rgb(143, 12, 12) 0px 15px 72px 7px;
   overflow: hidden;
 }
+/* footer */
+.smallscreen{
+  display: none;
+}
+footer{
+  background-color: #000000ed;
+  padding: 0 20px 20px 20px;
+}
+.colorgray{
+  color: hsla(0,0%,100%,.6);
+}
+.marginfor>li{
+  margin: 15px 0;
+}
+.icon1{
+  margin: 0 15px;
+  border: 2px solid white;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 50%;
+}
 @media screen and (max-width: 1200px){
   nav>span>a>h1 {
     font-size: 40px;
@@ -206,6 +227,21 @@ nav>span>a>h1{
   .ScrollLeft,.ScrollRight{
     display: none;
   }
+  .bigscreen{
+    display: none;
+  }
+  .smallscreen{
+    display: flex;
+    position: fixed;
+    width: 100vw;
+    bottom: 0;
+    background-color: #000000ed;
+    box-shadow: 0 -5px 50px 30px #000;
+    z-index: 30;
+  }
+  .divshadow{
+    margin-bottom: 40px;
+  }
 }
 @media screen and (max-width: 800px){
   nav>span>a>h1 {
@@ -236,6 +272,8 @@ nav>span>a>h1{
   }
   .backgroundtransprant{
     width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
 @media screen and (max-width: 600px){
@@ -286,5 +324,8 @@ nav>span>a>h1{
   .backgroundtransprant{
     border-radius: 10px;
     border-color: red;
+  }
+  .inputtag{
+    border-color: #242424;
   }
 }
