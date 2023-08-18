@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { createClient } from "@supabase/supabase-js";
 export default function Player() {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_KEY);
   const [iframe,iframevalue] = useState(null);
   const [video,videodata] = useState([]);
@@ -31,7 +30,12 @@ export default function Player() {
       iframevalue(`https://www.youtube.com/embed/${Arrdata.data[0].fileid}`);
     }
   }
+  const user = async()=>{  
+    const verifyuser = await supabase.auth.getUser();
+    console.log(verifyuser.data.user);
+  }
   useEffect(()=>{
+    user();
     if(player !== undefined){
       if(player[1] ===undefined){
         banner();

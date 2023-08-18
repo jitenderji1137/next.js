@@ -144,7 +144,8 @@ nav>span>a>h1{
 }
 .ScrollLeft,.ScrollRight{
   position: absolute;
-  height: 200px;
+  margin: 1.25rem 0;
+  height: 10rem;
 }
 .ScrollLeft{
   left: 0;
@@ -182,6 +183,9 @@ footer{
   padding: 10px;
   border-radius: 50%;
 }
+.loginpage{
+  padding: 1%;
+}
 @media screen and (max-width: 1200px){
   nav>span>a>h1 {
     font-size: 40px;
@@ -212,6 +216,9 @@ footer{
   }
   .px-5{
     padding-left: 0;
+  }
+  .ScrollLeft,.ScrollRight{
+    height: 9rem;
   }
 }
 @media screen and (max-width: 900px){
@@ -282,6 +289,7 @@ footer{
   }
   .navshadow{
     justify-content: space-between;
+    z-index: 31;
   }
   .navshadow>span:nth-child(1) {
     width: 50%;
