@@ -23,7 +23,7 @@ export default function Home() {
   const end = 19;
   const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_KEY);
   const banner = async ()=>{
-    var randomNumber = Math.floor(Math.random() * 4) + 1;
+    var randomNumber = Math.floor(Math.random() * 7) + 1;
     let Arrdata = await supabase.from('Free-Netflix-Banner').select('*').eq('id',randomNumber);
     if(Arrdata.data){
       bannersvalue(Arrdata.data[0]);
