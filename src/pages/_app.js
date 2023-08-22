@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }) {
           <Navbar/>
           <Component {...pageProps} />
           <Footer/>
-          <Script type='text/javascript' src='//toothbrushlimbperformance.com/8c/89/a3/8c89a37d7a271d17f9442787e948475f.js'></Script>
+          // <Script type='text/javascript' src='//toothbrushlimbperformance.com/8c/89/a3/8c89a37d7a271d17f9442787e948475f.js'></Script>
       </html>
     </>
   )
