@@ -17,7 +17,7 @@ export default function MainBanners({banners}){
                   <span>{banners.Duration}</span>
                   <span> | </span>
                   <span>{banners.Geans} </span>
-                  <Link href={`/player/${banners.Link}`}><button className='bg-red-700 hover:bg-red-600 px-4 py-2 mx-2.5 text-white rounded-lg' > Wacth </button></Link>
+                  <Link href={`/player/${banners.Link}/1`}><button className='bg-red-700 hover:bg-red-600 px-4 py-2 mx-2.5 text-white rounded-lg' > Wacth </button></Link>
                 </div>
                 <div>
                   <div className='text-base pt-4'>{banners.Paragraph}</div>

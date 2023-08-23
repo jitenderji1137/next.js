@@ -15,6 +15,10 @@ export default function ViewAll(){
                 const fetchdat = await Make_A_Fetch_Request("MainCategory",['WebSeries', 'Movies'],start,end);
                 pagedatavalue(fetchdat);
                 break;
+            case "Songs":
+                const fetchdatsongs = await Make_A_Fetch_Request("MainCategory",['Songs'],start,end);
+                pagedatavalue(fetchdatsongs);
+                break;
             case "HomePageWebSeriesData":
                 const fetchdat1 = await Make_A_Fetch_Request("MainCategory",['WebSeries'],start,end);
                 pagedatavalue(fetchdat1);
@@ -76,9 +80,9 @@ export default function ViewAll(){
             </div>
            </div>
            {pagedata.length !==0?<><div className='flex mb-20 w-full justify-center items-center'>
-            <button className='bg-red-700 p-2 rounded-md m-3' style={{width:"60px"}} disabled={+viewall[1]===1} onClick={()=>{if(+viewall[1]>1){router.push(`/viewall/${viewall[0]}/${+viewall[1]-1}`)}}}>Back</button>
+            <button className='bg-red-700 p-2 rounded-md m-3' style={{width:"100px"}} disabled={+viewall[1]===1} onClick={()=>{if(+viewall[1]>1){router.push(`/viewall/${viewall[0]}/${+viewall[1]-1}`)}}}>{+viewall[1]===1?"First Page":"Back"}</button>
             <button className='bg-red-700 p-2 rounded-md m-3' style={{width:"60px"}} disabled>{viewall[1]}</button>
-            <button className='bg-red-700 p-2 rounded-md m-3' style={{width:"60px"}} onClick={()=>{router.push(`/viewall/${viewall[0]}/${+viewall[1]+1}`)}}>Next</button>
+            <button className='bg-red-700 p-2 rounded-md m-3' style={{width:"100px"}} disabled={pagedata.length < 50} onClick={()=>{router.push(`/viewall/${viewall[0]}/${+viewall[1]+1}`)}}>{pagedata.length < 50?"Last Page":"Next"}</button>
            </div></>:<></>}
            
         </>

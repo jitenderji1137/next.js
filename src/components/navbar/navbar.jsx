@@ -45,7 +45,7 @@ export default function Navbar() {
                 <li><Link href="/viewall/movies/1">Movies</Link></li>
                 <li><Link href="/viewall/HomePageWebSeriesData/1">Web-Series</Link></li>
                 <li><Link href="/viewall/HomePageAdultData/1">Adult</Link></li>
-                <li><Link href="/songs/1">Songs</Link></li>
+                <li><Link href="/viewall/Songs/1">Songs</Link></li>
             </ul>
         </span>
         <span>

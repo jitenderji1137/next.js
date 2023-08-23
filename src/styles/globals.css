@@ -74,7 +74,7 @@ nav>span>a>h1{
   cursor: pointer;
   text-align: center;
   color: red;
-  font-size: 50px;
+  font-size: 40px;
 }
 .navshadow>span:nth-child(1){
   width: 25%;

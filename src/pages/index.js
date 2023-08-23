@@ -9,6 +9,7 @@ import { createClient } from "@supabase/supabase-js";
 export default function Home() {
   const [banners,bannersvalue] = useState([]);
   const [recentuploaded,recentuploadedvalue] = useState([]);
+  const [songs,songsvalue] = useState([])
   const [webseries,webseriesvalue] = useState([]);
   const [romantic,romanticvalue] = useState([]);
   const [action,actionvalue] = useState([]);
@@ -31,7 +32,9 @@ export default function Home() {
   }
   const data = async ()=>{    
     const fetchdat = await Make_A_Fetch_Request("MainCategory",['WebSeries', 'Movies'],start,end);
-    recentuploadedvalue(fetchdat); 
+    recentuploadedvalue(fetchdat);
+    const fetchdatsong = await Make_A_Fetch_Request("MainCategory",['Songs'],start,end);
+    songsvalue(fetchdatsong); 
     const fetchdat1 = await Make_A_Fetch_Request("MainCategory",['WebSeries'],start,end);
     webseriesvalue(fetchdat1);   
     const fetchdat2 = await Make_A_Fetch_Request("Geans",['Romantic'],start,end);
@@ -71,6 +74,7 @@ export default function Home() {
         <div className='divshadow'>
           <div>
               {recentuploaded.length !== 0?<Slider data={recentuploaded} text="Recent Uploaded ..." link={"HomePageRecentUpload"}/>:<EmptySlider text="Recent Uploaded ..."/>}
+              {songs.length !== 0?<Slider data={songs} text="Songs ..." link={"Songs"}/>:<EmptySlider text="Songs ..."/>}
               {webseries.length !== 0?<Slider data={webseries} text="Web Series ..." link={"HomePageWebSeriesData"}/>:<EmptySlider text="Web Series ..."/>}
               {romantic.length !== 0?<Slider data={romantic} text="Romantic ..." link={"HomePageRomanticData"}/>:<EmptySlider text="Romantic ..."/>}
               {action.length !== 0?<Slider data={action} text="Action ..." link={"HomePageActionData"}/>:<EmptySlider text="Action ..."/>}
