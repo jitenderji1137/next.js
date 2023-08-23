@@ -64,9 +64,11 @@ export default function Player() {
             <div id='div1' className='aspect-video rounded-lg'>
               <iframe frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" title="" width="100%" height="100%" src={iframe}></iframe>
             </div>
+            <h1 className='m-5 text-xl max-w-lg'>{video.Title}</h1>
+            <Link className='aspect-video' href="https://beta.publishers.adsterra.com/referral/aKMU588PJU"><Image alt="banner" className='rounded-lg w-80 m-5' src={image} width={1000} height={1000} /></Link>
           </>:<><div id='div1' className='aspect-video rounded-lg'></div></>
         }
-        <Link href="https://beta.publishers.adsterra.com/referral/aKMU588PJU"><Image alt="banner" style={{margin:"auto"}} src="https://landings-cdn.adsterratech.com/referralBanners/gif/720x90_adsterra_reff.gif" width={700} height={700} /></Link>
+        <Link href="https://beta.publishers.adsterra.com/referral/aKMU588PJU"><Image alt="banner" style={{margin:"auto",marginBottom:"20px"}} src="https://landings-cdn.adsterratech.com/referralBanners/gif/720x90_adsterra_reff.gif" width={700} height={700} /></Link>
         <div id="container-0ad2289ea9e1e73bd2b5439c23a4fc36"></div>
         {pagedata.length !==0?<><ViewAllRender data={pagedata}/></>:<><EmptyViewAllRender/></>}
         {pagedata.length !==0?<><div className='flex mb-20 w-full justify-center items-center'>
