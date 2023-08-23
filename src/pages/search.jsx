@@ -19,7 +19,9 @@ export default function SearchBar() {
                     </form>
                 </div>
             </div>
-            <div style={{height:"50vh"}}></div>
+            <div>
+                <div id="container-0ad2289ea9e1e73bd2b5439c23a4fc36"></div>
+            </div>
         </>
     );
   }

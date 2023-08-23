@@ -18,6 +18,7 @@ export default function SearchBar({button}) {
                         <button type="submit" className="text-3xl"><RxEnter/></button>
                     </form>
                 </div>
+                <div id="container-0ad2289ea9e1e73bd2b5439c23a4fc36"></div>
             </div>
         </>
     );
