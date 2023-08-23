@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from "next/image";
+import Script from 'next/script';
 import {RxEnter} from 'react-icons/rx'
 import Link from "next/link";
 export default function SearchBar({button}) {
@@ -20,6 +21,7 @@ export default function SearchBar({button}) {
                 </div>
                 <div id="container-0ad2289ea9e1e73bd2b5439c23a4fc36"></div>
             </div>
+            <Script async="async" data-cfasync="false" src="//toothbrushlimbperformance.com/0ad2289ea9e1e73bd2b5439c23a4fc36/invoke.js"></Script>
         </>
     );
   }

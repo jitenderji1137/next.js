@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link';
 import Image from 'next/image';
+import Script from 'next/script';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { createClient } from "@supabase/supabase-js";
@@ -76,6 +77,7 @@ export default function Player() {
             <button className='bg-red-700 p-2 rounded-md m-3' style={{width:"60px"}} disabled>{+player[1]}</button>
             <button className='bg-red-700 p-2 rounded-md m-3' style={{width:"100px"}} disabled={pagedata.length < 50} onClick={()=>{router.push(`/player/${player[0]}/${+player[1]+1}`)}}>{pagedata.length < 50?"Last Page":"Next"}</button>
         </div></>:<></>}
+        <Script async="async" data-cfasync="false" src="//toothbrushlimbperformance.com/0ad2289ea9e1e73bd2b5439c23a4fc36/invoke.js"></Script>
     </>
   );
 }
