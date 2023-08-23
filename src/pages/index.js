@@ -9,6 +9,7 @@ import { createClient } from "@supabase/supabase-js";
 export default function Home() {
   const [banners,bannersvalue] = useState([]);
   const [recentuploaded,recentuploadedvalue] = useState([]);
+  const [tv,tvvalue] = useState([])
   const [songs,songsvalue] = useState([])
   const [webseries,webseriesvalue] = useState([]);
   const [romantic,romanticvalue] = useState([]);
@@ -31,12 +32,14 @@ export default function Home() {
     }
   }
   const data = async ()=>{    
-    const fetchdat = await Make_A_Fetch_Request("MainCategory",['WebSeries', 'Movies'],start,end);
+    const fetchdat = await Make_A_Fetch_Request("MainCategory",['WebSeries', 'Movies','TV'],start,end);
     recentuploadedvalue(fetchdat);
     const fetchdatsong = await Make_A_Fetch_Request("MainCategory",['Songs'],start,end);
     songsvalue(fetchdatsong); 
     const fetchdat1 = await Make_A_Fetch_Request("MainCategory",['WebSeries'],start,end);
-    webseriesvalue(fetchdat1);   
+    webseriesvalue(fetchdat1);
+    const fetchdattv = await Make_A_Fetch_Request("MainCategory",['TV'],start,end);
+    tvvalue(fetchdattv);    
     const fetchdat2 = await Make_A_Fetch_Request("Geans",['Romantic'],start,end);
     romanticvalue(fetchdat2);  
     const fetchdat3 = await Make_A_Fetch_Request("Geans",['Action'],start,end);
@@ -76,6 +79,7 @@ export default function Home() {
               {recentuploaded.length !== 0?<Slider data={recentuploaded} text="Recent Uploaded ..." link={"HomePageRecentUpload"}/>:<EmptySlider text="Recent Uploaded ..."/>}
               {songs.length !== 0?<Slider data={songs} text="Songs ..." link={"Songs"}/>:<EmptySlider text="Songs ..."/>}
               {webseries.length !== 0?<Slider data={webseries} text="Web Series ..." link={"HomePageWebSeriesData"}/>:<EmptySlider text="Web Series ..."/>}
+              {tv.length !== 0?<Slider data={tv} text="TV Shows ..." link={"tv"}/>:<EmptySlider text="TV Shows ..."/>}
               {romantic.length !== 0?<Slider data={romantic} text="Romantic ..." link={"HomePageRomanticData"}/>:<EmptySlider text="Romantic ..."/>}
               {action.length !== 0?<Slider data={action} text="Action ..." link={"HomePageActionData"}/>:<EmptySlider text="Action ..."/>}
               {comedy.length !== 0?<Slider data={comedy} text="Comedy ..." link={"HomePageComedyData"}/>:<EmptySlider text="Comedy ..."/>}

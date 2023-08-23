@@ -12,8 +12,12 @@ export default function ViewAll(){
         const end = +(viewall[1])*49;
         switch(viewall[0]){
             case "HomePageRecentUpload":
-                const fetchdat = await Make_A_Fetch_Request("MainCategory",['WebSeries', 'Movies'],start,end);
+                const fetchdat = await Make_A_Fetch_Request("MainCategory",['WebSeries', 'Movies','TV'],start,end);
                 pagedatavalue(fetchdat);
+                break;
+            case "tv":
+                const fetchdattv = await Make_A_Fetch_Request("MainCategory",['TV'],start,end);
+                pagedatavalue(fetchdattv);
                 break;
             case "Songs":
                 const fetchdatsongs = await Make_A_Fetch_Request("MainCategory",['Songs'],start,end);
