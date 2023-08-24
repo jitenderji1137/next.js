@@ -52,18 +52,7 @@ export default function Player() {
       console.error('Error fetching data:', error);
     }
   };
-
-  const fetchUser = async () => {
-    try {
-      const user = await supabase.auth.getUser();
-      // Do something with the user data if needed
-    } catch (error) {
-      console.error('Error fetching user:', error);
-    }
-  };
-
   useEffect(() => {
-    fetchUser();
     if (player !== undefined) {
       const playerPage = parseInt(player[1], 10);
       const newStart = (playerPage - 1) * 49;
