@@ -1,9 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  trailingSlash: true,
   eslint: {
     ignoreDuringBuilds: true,
   },
-  reactStrictMode: false,
+  reactStrictMode: true,
   output: 'export',
   distDir: 'out',
   images: {
