@@ -68,13 +68,12 @@ export default function Player() {
       <Head>
         <title>{`Player - ${video.Title || 'Watching On Free Netflix'}`}</title>
         <meta name="description" content={video.Title || ''} />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/logo.png" />
       </Head>
       {video && image && iframe ? (
         <>
           <div id="div1" className="aspect-video rounded-lg">
             <iframe
+              id='my-iframe'
               frameborder="0"
               allowFullScreen="1"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
