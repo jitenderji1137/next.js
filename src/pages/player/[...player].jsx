@@ -73,8 +73,7 @@ export default function Player() {
         <>
           <div id="div1" className="aspect-video rounded-lg">
             <iframe
-              id='my-iframe'
-              frameborder="0"
+              // frameborder="0"
               allowFullScreen="1"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               title=""
