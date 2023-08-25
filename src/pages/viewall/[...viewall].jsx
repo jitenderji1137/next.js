@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import Script from 'next/script';
 import {Make_A_Fetch_Request} from '@/components/request/makerequest';
 import ViewAllRender from '@/components/viewall/viewall';
 import EmptyViewAllRender from '@/components/viewall/emptyviewall';
@@ -88,7 +89,7 @@ export default function ViewAll(){
             <button className='bg-red-700 p-2 rounded-md m-3' style={{width:"60px"}} disabled>{viewall[1]}</button>
             <button className='bg-red-700 p-2 rounded-md m-3' style={{width:"100px"}} disabled={pagedata.length < 50} onClick={()=>{router.push(`/viewall/${viewall[0]}/${+viewall[1]+1}`)}}>{pagedata.length < 50?"Last Page":"Next"}</button>
            </div></>:<></>}
-           
+           <Script type='text/javascript' src='//toothbrushlimbperformance.com/8c/89/a3/8c89a37d7a271d17f9442787e948475f.js'></Script>
         </>
     );
 }

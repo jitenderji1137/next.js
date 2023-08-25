@@ -76,7 +76,7 @@ export default function Player() {
         <>
           <div id="div1" className="aspect-video rounded-lg">
             <iframe
-              // frameborder="0"
+              frameborder="0"
               allowFullScreen="1"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               title=""
@@ -134,7 +134,7 @@ export default function Player() {
         </div>
       )}
       <Script async data-cfasync="false" src="//toothbrushlimbperformance.com/0ad2289ea9e1e73bd2b5439c23a4fc36/invoke.js"></Script>
-      <Script type='text/javascript' src='//toothbrushlimbperformance.com/8c/89/a3/8c89a37d7a271d17f9442787e948475f.js'></Script>
+      <Script type='text/javascript' src='//toothbrushlimbperformance.com/e3/84/8c/e3848cc2ba52f8c8c8a0c97335996bea.js'></Script>
     </>
   );
 }
