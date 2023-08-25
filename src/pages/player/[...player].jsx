@@ -40,6 +40,9 @@ export default function Player() {
         } else if (videoData.Plateform === 'Vidsrc') {
           const embedType = videoData.MainCategory === 'TV' ? 'tv' : 'movie';
           iframeUrl = `https://vidsrc.to/embed/${embedType}/${videoData.FileID}`;
+        } else if (videoData.Plateform === 'vidsrc') {
+          const embedType = videoData.MainCategory === 'TV' ? 'tv' : 'movie';
+          iframeUrl = `https://vidsrc.me//embed//${embedType}?imdb=${videoData.FileID}`;
         }
 
         setIframe(iframeUrl);
