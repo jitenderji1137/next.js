@@ -6,7 +6,7 @@ const ViewAll = ({title,MapedData,page,totparem})=>{
     return(
         <>
         <Head>
-            <title>{`Player - ${title || 'Watching On Free Netflix'}`}</title>
+            <title>{`View All - ${title || 'Watching On Free Netflix'}`}</title>
             <meta name="description" content={title || ''} />
         </Head>
         <div className='mt-24'>

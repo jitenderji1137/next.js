@@ -1,36 +1,50 @@
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import ViewAllRender from '@/components/viewall/viewall';
-import EmptyViewAllRender from '@/components/viewall/emptyviewall';
-import {Make_A_Search_Request} from '@/components/request/makerequest';
-export default function Search() {
-  const [pagedata,pagedatavalue] = useState([]);
-  const router = useRouter();
-  const { search } = router.query;
-  const data = async()=>{
-    const start = (+(search[1])-1)*49;
-    const end = +(search[1])*49;
-    const query = `%${search[0]}%`;
-    const fetchdata = await Make_A_Search_Request(query,start,end);
-    pagedatavalue(fetchdata);
-  }
-  useEffect(()=>{
-    if(search !== undefined){
-      data();
-    }
-  },[search]);
-  return (
+import Head from 'next/head';
+import Link from 'next/link';
+import Image from 'next/image';
+import { createClient } from '@supabase/supabase-js';
+const Search = ({SearchText,MapedData,page})=>{
+  return(
     <>
-    <div className='mt-24'>
-     <div className='m-5'>
-         {pagedata.length !==0?<><ViewAllRender data={pagedata}/></>:<><EmptyViewAllRender/></>}
-     </div>
-    </div>
-    {pagedata.length !==0?<><div className='flex mb-20 w-full justify-center items-center'>
-            <button className='bg-red-700 p-2 rounded-md m-3' style={{width:"60px"}} disabled={+search[1]===1} onClick={()=>{if(+search[1]>1){router.push(`/search/${search[0]}/${+search[1]-1}`)}}}>Back</button>
-            <button className='bg-red-700 p-2 rounded-md m-3' style={{width:"60px"}} disabled>{search[1]}</button>
-            <button className='bg-red-700 p-2 rounded-md m-3' style={{width:"60px"}} onClick={()=>{router.push(`/search/${search[0]}/${+search[1]+1}`)}}>Next</button>
-    </div></>:<></>}
- </>
-  );
+        <Head>
+            <title>{`Search - ${SearchText || 'Watching On Free Netflix'} results on free netflix`}</title>
+            <meta name="description" content={SearchText || ''} />
+        </Head>
+        <div className='mt-24'>
+          <div className='m-5'>
+          <div className='grid grid-cols-5 gap-3 mb-5'>
+                {MapedData.map((item)=>{
+                    return <div key={item.ID} className='aspect-video'>
+                          <Link href={`/player/${item.ID}/1`}><Image className='rounded h-full w-full cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-125 hover:bg-indigo-500 duration-300' src={item.Image} alt={item.Title} title={item.Title} width={500} height={500} /></Link>
+                        </div>
+                    })}
+                </div>
+          </div>
+        </div>
+        <div className="flex mb-20 w-full justify-center items-center">
+            <Link className="bg-red-700 p-2 rounded-md m-3 text-center" style={{ width: '100px' }} href={page<=1?"#":`/search/${SearchText}/${page-1}`}>{page === 1 ? 'First Page' : 'Back'}</Link>
+            <button className="bg-red-700 p-2 rounded-md m-3" style={{ width: '60px' }} disabled>{page}</button>
+            <Link className="bg-red-700 p-2 rounded-md m-3 text-center" style={{ width: '100px' }} href={MapedData.length<50?"#":`/search/${SearchText}/${page+1}`}>{MapedData.length < 50 ? 'Last Page' : 'Next'}</Link>
+        </div>
+    </>
+  )
 }
+
+export async function getServerSideProps(context) {
+  const { params } = context;
+  let page = +params.search[1];
+  if(page<=0){
+    page = 1;
+  }
+  const Start = (page - 1)*49;
+  const End = page*49;
+  const SearchText = params.search[0];
+  const query = `%${SearchText}%`;
+  const supabase =  createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_KEY);
+  const MapedData = (await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).ilike('Title', query).range(Start,End)).data;
+  return {
+    props: {
+      SearchText,MapedData,page
+    },
+  };
+}
+export default Search;
