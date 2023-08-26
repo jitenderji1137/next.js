@@ -72,11 +72,11 @@ export default function Footer(){
             <MdMovie className="m-auto text-xl"/>
             <span className="text-xs colorgray">Movies</span>    
             </button></Link>
-            <Link href="/viewall/HomePageWebSeriesData/1"><button className="tab-item">
+            <Link href="/viewall/web-series/1"><button className="tab-item">
             <IoIosVideocam className="m-auto text-xl"/>
             <span className="text-xs colorgray">Series</span>    
             </button></Link>
-            <Link href="/viewall/HomePageAdultData/1"><button className="tab-item">
+            <Link href="/viewall/adult/1"><button className="tab-item">
             <RiSpyFill className="m-auto text-xl"/>
             <span className="text-xs colorgray">Videos</span>
             </button></Link>
