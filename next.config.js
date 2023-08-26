@@ -1,10 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async redirects() {
+    return [
+      {
+        source: '/viewall/:viewall*',
+        destination: '/viewall/:viewall*',
+        permanent: true,
+      },
+    ]
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },
   reactStrictMode: true,
-  output: 'export',
+  // output: 'export',
   distDir: 'out',
   images: {
     unoptimized : true,
