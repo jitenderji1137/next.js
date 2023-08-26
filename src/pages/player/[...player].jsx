@@ -12,7 +12,7 @@ const Player = ({ iframeUrl,title,image,page,MapedData,ID}) => {
       </Head>
       <div id="div1" className="aspect-video rounded-lg">
         <iframe
-          frameborder="0"
+          frameBorder="0"
           allowFullScreen="1"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           title=""
@@ -34,7 +34,7 @@ const Player = ({ iframeUrl,title,image,page,MapedData,ID}) => {
           height={700}
         />
       </Link>
-      <div id="container-0ad2289ea9e1e73bd2b5439c23a4fc36"></div>
+      <div id="container-8f469aefc3c6be500c096846b85f6b17"></div>
       <div className='grid grid-cols-5 gap-3 mb-5'>
         {MapedData.map((item)=>{
             return <div key={item.ID} className='aspect-video'>
@@ -47,8 +47,9 @@ const Player = ({ iframeUrl,title,image,page,MapedData,ID}) => {
         <button className="bg-red-700 p-2 rounded-md m-3" style={{ width: '60px' }} disabled>{page}</button>
         <Link disabled={MapedData.length < 50} href={`/player/${ID}/${page+1}`}><button className="bg-red-700 p-2 rounded-md m-3" style={{ width: '100px' }} disabled={MapedData.length < 50} >{MapedData.length < 50 ? 'Last Page' : 'Next'}</button></Link>
       </div>
-      <Script async data-cfasync="false" src="//toothbrushlimbperformance.com/0ad2289ea9e1e73bd2b5439c23a4fc36/invoke.js"></Script>
-      <Script type='text/javascript' src='//toothbrushlimbperformance.com/e3/84/8c/e3848cc2ba52f8c8c8a0c97335996bea.js'></Script>
+      <Script type='text/javascript' src='//toothbrushlimbperformance.com/4e/81/7e/4e817e7917be4440e132a30f4cb75ef2.js'></Script>
+      <Script type='text/javascript' src='//toothbrushlimbperformance.com/60/22/8a/60228a9740be2554dce96d52daee6feb.js'></Script>
+      <Script async="async" data-cfasync="false" src="//toothbrushlimbperformance.com/8f469aefc3c6be500c096846b85f6b17/invoke.js"></Script>
     </>
   );
 };
@@ -79,7 +80,7 @@ export async function getServerSideProps(context) {
     const embedType = response.MainCategory === 'TV' ? 'tv' : 'movie';
     iframeUrl = `https://vidsrc.me//embed//${embedType}?imdb=${fileid}`;
   }
-  let MapedData = (await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).in('MainCategory', [response.MainCategory]).range(Start,End)).data;
+  let MapedData = (await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).eq('Geans', response.Geans).in('MainCategory', [response.MainCategory]).range(Start,End)).data;
   return {
     props: {
       iframeUrl,
