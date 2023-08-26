@@ -47,8 +47,8 @@ const Player = ({ iframeUrl,title,image,page,MapedData,ID}) => {
         <button className="bg-red-700 p-2 rounded-md m-3" style={{ width: '60px' }} disabled>{page}</button>
         <Link className="bg-red-700 p-2 rounded-md m-3" style={{ width: '100px' }} href={MapedData.length<50?"#":`/player/${ID}/${page+1}`}>{MapedData.length < 50 ? 'Last Page' : 'Next'}</Link>
       </div>
-      <Script type='text/javascript' src='//toothbrushlimbperformance.com/4e/81/7e/4e817e7917be4440e132a30f4cb75ef2.js'></Script>
-      <Script type='text/javascript' src='//toothbrushlimbperformance.com/60/22/8a/60228a9740be2554dce96d52daee6feb.js'></Script>
+      {/* <Script type='text/javascript' src='//toothbrushlimbperformance.com/4e/81/7e/4e817e7917be4440e132a30f4cb75ef2.js'></Script>
+      <Script type='text/javascript' src='//toothbrushlimbperformance.com/60/22/8a/60228a9740be2554dce96d52daee6feb.js'></Script> */}
       <Script async="async" data-cfasync="false" src="//toothbrushlimbperformance.com/8f469aefc3c6be500c096846b85f6b17/invoke.js"></Script>
     </>
   );
