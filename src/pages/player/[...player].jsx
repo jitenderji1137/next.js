@@ -38,14 +38,14 @@ const Player = ({ iframeUrl,title,image,page,MapedData,ID}) => {
       <div className='grid grid-cols-5 gap-3 mb-5'>
         {MapedData.map((item)=>{
             return <div key={item.ID} className='aspect-video'>
-                <Link href={`/player/${item.ID}/1`}><Image className='rounded h-full w-full cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-125 hover:bg-indigo-500 duration-300' src={item.Image} alt={item.Title} title={item.Title} width={500} height={500} /></Link>
+                <Link href={`/player/${item.ID}/1`}><Image className='bg-stone-400 rounded h-full w-full cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-125 hover:bg-indigo-500 duration-300' src={item.Image} alt={item.Title} title={item.Title} width={500} height={500} /></Link>
             </div>
         })}
       </div>
       <div className="flex mb-20 w-full justify-center items-center">
         <Link className="bg-red-700 p-2 rounded-md m-3" style={{ width: '100px' }} href={page<=1?"#":`/player/${ID}/${page-1}`}>{page === 1 ? 'First Page' : 'Back'}</Link>
         <button className="bg-red-700 p-2 rounded-md m-3" style={{ width: '60px' }} disabled>{page}</button>
-        <Link disabled={MapedData.length < 50} href={`/player/${ID}/${page+1}`}><button className="bg-red-700 p-2 rounded-md m-3" style={{ width: '100px' }} disabled={MapedData.length < 50} >{MapedData.length < 50 ? 'Last Page' : 'Next'}</button></Link>
+        <Link className="bg-red-700 p-2 rounded-md m-3" style={{ width: '100px' }} href={MapedData.length<50?"#":`/player/${ID}/${page+1}`}>{MapedData.length < 50 ? 'Last Page' : 'Next'}</Link>
       </div>
       <Script type='text/javascript' src='//toothbrushlimbperformance.com/4e/81/7e/4e817e7917be4440e132a30f4cb75ef2.js'></Script>
       <Script type='text/javascript' src='//toothbrushlimbperformance.com/60/22/8a/60228a9740be2554dce96d52daee6feb.js'></Script>

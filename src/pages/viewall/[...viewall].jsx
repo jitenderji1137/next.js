@@ -1,95 +1,115 @@
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import Script from 'next/script';
-import {Make_A_Fetch_Request} from '@/components/request/makerequest';
-import ViewAllRender from '@/components/viewall/viewall';
-import EmptyViewAllRender from '@/components/viewall/emptyviewall';
-export default function ViewAll(){
-    const [pagedata,pagedatavalue] = useState([]);
-    const router = useRouter();
-    const { viewall } = router.query;
-    const FetchData = async ()=>{
-        const start = (+(viewall[1])-1)*49;
-        const end = +(viewall[1])*49;
-        switch(viewall[0]){
-            case "HomePageRecentUpload":
-                const fetchdat = await Make_A_Fetch_Request("MainCategory",['WebSeries', 'Movies','TV'],start,end);
-                pagedatavalue(fetchdat);
-                break;
-            case "tv":
-                const fetchdattv = await Make_A_Fetch_Request("MainCategory",['TV'],start,end);
-                pagedatavalue(fetchdattv);
-                break;
-            case "Songs":
-                const fetchdatsongs = await Make_A_Fetch_Request("MainCategory",['Songs'],start,end);
-                pagedatavalue(fetchdatsongs);
-                break;
-            case "HomePageWebSeriesData":
-                const fetchdat1 = await Make_A_Fetch_Request("MainCategory",['WebSeries'],start,end);
-                pagedatavalue(fetchdat1);
-                break;
-            case "HomePageRomanticData":
-                const fetchdat2 = await Make_A_Fetch_Request("Geans",['Romantic'],start,end);
-                pagedatavalue(fetchdat2);
-                break;
-            case "HomePageActionData":
-                const fetchdat3 = await Make_A_Fetch_Request("Geans",['Action'],start,end);
-                pagedatavalue(fetchdat3);
-                break;
-            case "HomePageComedyData":
-                const fetchdat4 = await Make_A_Fetch_Request("Geans",['Comedy'],start,end);
-                pagedatavalue(fetchdat4);
-                break;
-            case "HomePageCrimeData":
-                const fetchdat5 = await Make_A_Fetch_Request("Geans",['Crime'],start,end);
-                pagedatavalue(fetchdat5);
-                break;
-            case "HomePageDramaData":
-                const fetchdat6 = await Make_A_Fetch_Request("Geans",['Drama'],start,end);
-                pagedatavalue(fetchdat6);
-                break;
-            case "HomePageHorrorData":
-                const fetchdat7 = await Make_A_Fetch_Request("Geans",['Horror'],start,end);
-                pagedatavalue(fetchdat7);
-                break;
-            case "HomePageTraillerData":
-                const fetchdat8 = await Make_A_Fetch_Request("Geans",['Thriller'],start,end);
-                pagedatavalue(fetchdat8);
-                break;
-            case "HomePageAdventureData":
-                const fetchdat9 = await Make_A_Fetch_Request("Geans",['Adventure'],start,end);
-                pagedatavalue(fetchdat9);
-                break;
-            case "HomePageAdultData":
-                const fetchdat10 = await Make_A_Fetch_Request("MainCategory",['Adult'],start,end);
-                pagedatavalue(fetchdat10);
-                break;
-            case "movies":
-                const fetchdat11 = await Make_A_Fetch_Request("MainCategory",['Movies'],start,end);
-                pagedatavalue(fetchdat11);
-                break;
-            default:
-                router.push("/");
-            }        
-    }
-    useEffect(()=>{
-        if(viewall !== undefined){
-            FetchData();
-        }
-    },[viewall])
+import Head from 'next/head';
+import Link from 'next/link';
+import Image from 'next/image';
+import { createClient } from '@supabase/supabase-js';
+const ViewAll = ({title,MapedData,page,totparem})=>{
     return(
         <>
-           <div className='mt-24'>
+        <Head>
+            <title>{`Player - ${title || 'Watching On Free Netflix'}`}</title>
+            <meta name="description" content={title || ''} />
+        </Head>
+        <div className='mt-24'>
             <div className='m-5'>
-                {pagedata.length !==0?<><ViewAllRender data={pagedata}/></>:<><EmptyViewAllRender/></>}
+                <div className='grid grid-cols-5 gap-3 mb-5'>
+                    {MapedData.map((item)=>{
+                        return <div key={item.ID} className='aspect-video'>
+                            <Link href={`/player/${item.ID}/1`}><Image className='bg-stone-400 rounded h-full w-full cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-125 hover:bg-indigo-500 duration-300' src={item.Image} alt={item.Title} title={item.Title} width={500} height={500} /></Link>
+                        </div>
+                    })}
+                </div>
             </div>
-           </div>
-           {pagedata.length !==0?<><div className='flex mb-20 w-full justify-center items-center'>
-            <button className='bg-red-700 p-2 rounded-md m-3' style={{width:"100px"}} disabled={+viewall[1]===1} onClick={()=>{if(+viewall[1]>1){router.push(`/viewall/${viewall[0]}/${+viewall[1]-1}`)}}}>{+viewall[1]===1?"First Page":"Back"}</button>
-            <button className='bg-red-700 p-2 rounded-md m-3' style={{width:"60px"}} disabled>{viewall[1]}</button>
-            <button className='bg-red-700 p-2 rounded-md m-3' style={{width:"100px"}} disabled={pagedata.length < 50} onClick={()=>{router.push(`/viewall/${viewall[0]}/${+viewall[1]+1}`)}}>{pagedata.length < 50?"Last Page":"Next"}</button>
-           </div></>:<></>}
-           <Script type='text/javascript' src='//toothbrushlimbperformance.com/8c/89/a3/8c89a37d7a271d17f9442787e948475f.js'></Script>
+        </div>
+        <div className="flex mb-20 w-full justify-center items-center">
+            <Link className="bg-red-700 p-2 rounded-md m-3 text-center" style={{ width: '100px' }} href={page<=1?"#":`/viewall/${totparem}/${page-1}`}>{page === 1 ? 'First Page' : 'Back'}</Link>
+            <button className="bg-red-700 p-2 rounded-md m-3" style={{ width: '60px' }} disabled>{page}</button>
+            <Link className="bg-red-700 p-2 rounded-md m-3 text-center" style={{ width: '100px' }} href={MapedData.length<50?"#":`/viewall/${totparem}/${page+1}`}>{MapedData.length < 50 ? 'Last Page' : 'Next'}</Link>
+        </div>
         </>
     );
 }
+
+export async function getServerSideProps(context) {
+    const { params } = context;
+    const totparem = params.viewall[0];
+    const supabase =  createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_KEY);
+    let page = +params.viewall[1];
+    if(page<=0){
+      page = 1;
+    }
+    const Start = (page - 1)*49;
+    const End = page*49;
+    var title ;
+    var MapedData ;
+    const Make_A_Fetch_Request = async(part1,part2)=>{
+        MapedData = (await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).in(part1, part2).range(Start,End)).data;
+    }
+    switch(params.viewall[0]){
+    case "recent":
+        await Make_A_Fetch_Request("MainCategory",['WebSeries', 'Movies','TV']);
+        title = "All Recent Upload ..."
+        break;
+    case "tv":
+        await Make_A_Fetch_Request("MainCategory",['TV']);
+        title = "All TV Shows ..."
+        break;
+    case "songs":
+        await Make_A_Fetch_Request("MainCategory",['Songs']);
+        title = "All New Songs ..."
+        break;
+    case "web-series":
+        await Make_A_Fetch_Request("MainCategory",['WebSeries']);
+        title = "All New Web-Series ..."
+        break;
+    case "romantic":
+        await Make_A_Fetch_Request("Geans",['Romantic']);
+        title = "All Romantic Content ..."
+        break;
+    case "action":
+        await Make_A_Fetch_Request("Geans",['Action']);
+        title = "All Action Content ..."
+        break;
+    case "comedy":
+        await Make_A_Fetch_Request("Geans",['Comedy']);
+        title = "All Comedy Content ..."
+        break;
+    case "crime":
+        await Make_A_Fetch_Request("Geans",['Crime']);
+        title = "All Crime Content ..."
+        break;
+    case "drama":
+        await Make_A_Fetch_Request("Geans",['Drama']);
+        title = "All Drama Content ..."
+        break;
+    case "horror":
+        await Make_A_Fetch_Request("Geans",['Horror']);
+        title = "All Horror Content ..."
+        break;
+    case "trailler":
+        await Make_A_Fetch_Request("Geans",['Thriller']);
+        title = "All Thriller Content ..."
+        break;
+    case "adventure":
+        await Make_A_Fetch_Request("Geans",['Adventure']);
+        title = "All Adventure Content ..."
+        break;
+    case "adult":
+        await Make_A_Fetch_Request("MainCategory",['Adult']);
+        title = "All Adult Content ..."
+        break;
+    case "movies":
+        await Make_A_Fetch_Request("MainCategory",['Movies']);
+        title = "All New Movies ..."
+        break;
+    default:
+        await Make_A_Fetch_Request("MainCategory",['Movies']);
+        title = "All New Movies ..."
+    }        
+    return {
+      props: {
+        title,MapedData,page,totparem
+      },
+    };
+  }
+
+export default ViewAll;

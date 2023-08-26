@@ -76,19 +76,19 @@ export default function Home() {
         <div className='justforbanner'></div>
         <div className='divshadow'>
           <div>
-              {recentuploaded.length !== 0?<Slider data={recentuploaded} text="Recent Uploaded ..." link={"HomePageRecentUpload"}/>:<EmptySlider text="Recent Uploaded ..."/>}
-              {songs.length !== 0?<Slider data={songs} text="Songs ..." link={"Songs"}/>:<EmptySlider text="Songs ..."/>}
-              {webseries.length !== 0?<Slider data={webseries} text="Web Series ..." link={"HomePageWebSeriesData"}/>:<EmptySlider text="Web Series ..."/>}
+              {recentuploaded.length !== 0?<Slider data={recentuploaded} text="Recent Uploaded ..." link={"recent"}/>:<EmptySlider text="Recent Uploaded ..."/>}
+              {songs.length !== 0?<Slider data={songs} text="Songs ..." link={"songs"}/>:<EmptySlider text="Songs ..."/>}
+              {webseries.length !== 0?<Slider data={webseries} text="Web Series ..." link={"web-series"}/>:<EmptySlider text="Web Series ..."/>}
               {tv.length !== 0?<Slider data={tv} text="TV Shows ..." link={"tv"}/>:<EmptySlider text="TV Shows ..."/>}
-              {romantic.length !== 0?<Slider data={romantic} text="Romantic ..." link={"HomePageRomanticData"}/>:<EmptySlider text="Romantic ..."/>}
-              {action.length !== 0?<Slider data={action} text="Action ..." link={"HomePageActionData"}/>:<EmptySlider text="Action ..."/>}
-              {comedy.length !== 0?<Slider data={comedy} text="Comedy ..." link={"HomePageComedyData"}/>:<EmptySlider text="Comedy ..."/>}
-              {crime.length !== 0?<Slider data={crime} text="Crime ..." link={"HomePageCrimeData"}/>:<EmptySlider text="Crime ..."/>}
-              {drame.length !== 0?<Slider data={drame} text="Drama ..." link={"HomePageDramaData"}/>:<EmptySlider text="Drama ..."/>}
-              {horror.length !== 0?<Slider data={horror} text="Horror ..." link={"HomePageHorrorData"}/>:<EmptySlider text="Horror ..."/>}
-              {trailer.length !== 0?<Slider data={trailer} text="Trailler ..." link={"HomePageTraillerData"}/>:<EmptySlider text="Trailler ..."/>}
-              {adventure.length !== 0?<Slider data={adventure} text="Adventure ..." link={"HomePageAdventureData"}/>:<EmptySlider text="Adventure ..."/>}
-              {adult.length !== 0?<Slider data={adult} text="Adult ..." link={"HomePageAdultData"}/>:<EmptySlider text="Adult ..."/>}
+              {romantic.length !== 0?<Slider data={romantic} text="Romantic ..." link={"romantic"}/>:<EmptySlider text="Romantic ..."/>}
+              {action.length !== 0?<Slider data={action} text="Action ..." link={"action"}/>:<EmptySlider text="Action ..."/>}
+              {comedy.length !== 0?<Slider data={comedy} text="Comedy ..." link={"comedy"}/>:<EmptySlider text="Comedy ..."/>}
+              {crime.length !== 0?<Slider data={crime} text="Crime ..." link={"crime"}/>:<EmptySlider text="Crime ..."/>}
+              {drame.length !== 0?<Slider data={drame} text="Drama ..." link={"drama"}/>:<EmptySlider text="Drama ..."/>}
+              {horror.length !== 0?<Slider data={horror} text="Horror ..." link={"horror"}/>:<EmptySlider text="Horror ..."/>}
+              {trailer.length !== 0?<Slider data={trailer} text="Trailler ..." link={"trailler"}/>:<EmptySlider text="Trailler ..."/>}
+              {adventure.length !== 0?<Slider data={adventure} text="Adventure ..." link={"adventure"}/>:<EmptySlider text="Adventure ..."/>}
+              {adult.length !== 0?<Slider data={adult} text="Adult ..." link={"adult"}/>:<EmptySlider text="Adult ..."/>}
           </div>
         </div>
       </div>
