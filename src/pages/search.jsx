@@ -4,7 +4,7 @@ import Image from "next/image";
 import Script from 'next/script';
 import {RxEnter} from 'react-icons/rx'
 import Link from "next/link";
-export default function SearchBar() {
+const SearchBar = ({})=> {
     const [searchQuery, setSearchQuery] = useState('');
     const router = useRouter();
     return (
@@ -27,3 +27,9 @@ export default function SearchBar() {
         </>
     );
   }
+  export async function getServerSideProps(context) {
+    return {
+        props: {},
+      };
+  }
+  export default SearchBar;
