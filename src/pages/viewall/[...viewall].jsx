@@ -2,7 +2,9 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 import { createClient } from '@supabase/supabase-js';
+import { useRouter } from 'next/navigation'
 const ViewAll = ({title,MapedData,page,totparem})=>{
+    const router = useRouter()
     return(
         <>
         <Head>

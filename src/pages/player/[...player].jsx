@@ -3,7 +3,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Script from 'next/script';
 import { createClient } from '@supabase/supabase-js';
+import { useRouter } from 'next/navigation'
 const Player = ({ iframeUrl,title,image,page,MapedData,ID}) => {
+  const router = useRouter()
   return (
     <>
       <Head>
