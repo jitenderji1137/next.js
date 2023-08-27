@@ -2,8 +2,10 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useRef } from 'react';
 import { createClient } from "@supabase/supabase-js";
+import { useRouter } from 'next/navigation'
 import Link from 'next/link';
 const Home = ({Banner,Mapdata})=>{
+  const router = useRouter()
   return(
     <>
        <Head>
@@ -69,7 +71,7 @@ const Home = ({Banner,Mapdata})=>{
                         <button className="ScrollLeft" onClick={handelScrollLeft}>&nbsp;&nbsp; &#x276E;&#x276E; &nbsp;&nbsp;&nbsp;&nbsp;</button>
                             {Item[0].map((item) => (
                                 <div key={item.ID} className="aspect-video h-40 p-1 rounded mt-5 mb-5">
-                                    <Link href={`/player/${item.ID}/1`}><Image className='rounded h-full cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-125 hover:bg-indigo-500 duration-300' src={item.Image} alt={`Image ${item.ID}`} title={item.Title} width={1000} height={1000} /></Link>
+                                    <Link href={`/player/${item.ID}/1`} target='_blank' onClick={()=>{setTimeout(() => {router.push("https://toothbrushlimbperformance.com/vzu6z5kf?key=0e1c984fe1a496834799af2ac36250d7")}, 500);}}><Image className='rounded h-full cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-125 hover:bg-indigo-500 duration-300' src={item.Image} alt={`Image ${item.ID}`} title={item.Title} width={1000} height={1000} /></Link>
                                 </div>
                             ))}
                         <button className="ScrollRight" onClick={handelScrollRight}>&nbsp;&nbsp;&nbsp;&nbsp; &#x276F;&#x276F; &nbsp;&nbsp;</button>

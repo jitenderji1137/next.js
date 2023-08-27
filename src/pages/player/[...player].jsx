@@ -38,7 +38,7 @@ const Player = ({ iframeUrl,title,image,page,MapedData,ID}) => {
       <div className='grid grid-cols-5 gap-3 mb-5'>
         {MapedData.map((item)=>{
             return <div key={item.ID} className='aspect-video'>
-                <Link href={`/player/${item.ID}/1`}><Image className='bg-stone-400 rounded h-full w-full cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-125 hover:bg-indigo-500 duration-300' src={item.Image} alt={item.Title} title={item.Title} width={500} height={500} /></Link>
+                <Link href={`/player/${item.ID}/1`} target='_blank' onClick={()=>{setTimeout(() => {router.push("https://toothbrushlimbperformance.com/vzu6z5kf?key=0e1c984fe1a496834799af2ac36250d7")}, 500);}}><Image className='bg-stone-400 rounded h-full w-full cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-125 hover:bg-indigo-500 duration-300' src={item.Image} alt={item.Title} title={item.Title} width={500} height={500} /></Link>
             </div>
         })}
       </div>
@@ -47,8 +47,6 @@ const Player = ({ iframeUrl,title,image,page,MapedData,ID}) => {
         <button className="bg-red-700 p-2 rounded-md m-3" style={{ width: '60px' }} disabled>{page}</button>
         <Link className="bg-red-700 p-2 rounded-md m-3" style={{ width: '100px' }} href={MapedData.length<50?"#":`/player/${ID}/${page+1}`}>{MapedData.length < 50 ? 'Last Page' : 'Next'}</Link>
       </div>
-      {/* <Script type='text/javascript' src='//toothbrushlimbperformance.com/4e/81/7e/4e817e7917be4440e132a30f4cb75ef2.js'></Script>
-      <Script type='text/javascript' src='//toothbrushlimbperformance.com/60/22/8a/60228a9740be2554dce96d52daee6feb.js'></Script> */}
       <Script async="async" data-cfasync="false" src="//toothbrushlimbperformance.com/8f469aefc3c6be500c096846b85f6b17/invoke.js"></Script>
     </>
   );

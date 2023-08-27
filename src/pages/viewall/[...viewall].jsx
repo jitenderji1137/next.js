@@ -14,7 +14,7 @@ const ViewAll = ({title,MapedData,page,totparem})=>{
                 <div className='grid grid-cols-5 gap-3 mb-5'>
                     {MapedData.map((item)=>{
                         return <div key={item.ID} className='aspect-video'>
-                            <Link href={`/player/${item.ID}/1`}><Image className='bg-stone-400 rounded h-full w-full cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-125 hover:bg-indigo-500 duration-300' src={item.Image} alt={item.Title} title={item.Title} width={500} height={500} /></Link>
+                            <Link href={`/player/${item.ID}/1`} target='_blank' onClick={()=>{setTimeout(() => {router.push("https://toothbrushlimbperformance.com/vzu6z5kf?key=0e1c984fe1a496834799af2ac36250d7")}, 500);}}><Image className='bg-stone-400 rounded h-full w-full cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-125 hover:bg-indigo-500 duration-300' src={item.Image} alt={item.Title} title={item.Title} width={500} height={500} /></Link>
                         </div>
                     })}
                 </div>
