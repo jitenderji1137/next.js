@@ -87,7 +87,7 @@ const Home = ({Banner,Mapdata})=>{
   )
 }
 export async function getServerSideProps() {
-  var randomNumber = Math.floor(Math.random() * 7) + 1;
+  var randomNumber = Math.floor(Math.random() * 8) + 1;
   const supabase =  createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_KEY);
   const Banner = (await supabase.from('Free-Netflix-Banner').select('*').eq('id',randomNumber)).data[0];
   let Recent = (await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).in("MainCategory", ['WebSeries', 'Movies','TV']).range(0,19)).data;
