@@ -63,7 +63,9 @@ export async function getServerSideProps(context) {
   }
   const Start = (page - 1)*49;
   const End = page*49;
-  const supabase =  createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_KEY);
+  const supabase =  createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_KEY, {
+    auth: { persistSession: false },
+  });
   const response = (await supabase.from('Free-Netflix-Darabase').select('*').eq('ID', params.player[0])).data[0];
   const title = response.Title;
   const image = response.Image;

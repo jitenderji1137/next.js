@@ -46,7 +46,7 @@ const Home = ({Banner,Mapdata})=>{
         <div className='justforbanner'></div>
         <div className='divshadow'>
           <div>
-            {Mapdata.map((Item)=>{
+            {Mapdata.map((Item,index)=>{
                 const containerRef = useRef(null);
                 const handelScrollLeft = ()=>{
                     if(containerRef.current){
@@ -61,8 +61,7 @@ const Home = ({Banner,Mapdata})=>{
                     }
                    }
               return (
-                <>
-                    <div>
+                    <div key={index}>
                         <div className='px-5 flex justify-between'>
                             <span className='mt-3 font-mono text-2xl font-black cursor-default'>{Item[2]}</span>
                             <Link href={`/viewall/${Item[1]}/1`} className='flex'><span className='font-sans text-fuchsia-500 mt-5 font-medium text-base cursor-pointer forfiveone'>More &#x276F;&#x276F;</span></Link>
@@ -77,7 +76,6 @@ const Home = ({Banner,Mapdata})=>{
                         <button className="ScrollRight" onClick={handelScrollRight}>&nbsp;&nbsp;&nbsp;&nbsp; &#x276F;&#x276F; &nbsp;&nbsp;</button>
                         </div>
                     </div>
-                </>
               )
             })}
           </div>
@@ -88,7 +86,9 @@ const Home = ({Banner,Mapdata})=>{
 }
 export async function getServerSideProps() {
   var randomNumber = Math.floor(Math.random() * 8) + 1;
-  const supabase =  createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_KEY);
+  const supabase =  createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_KEY, {
+    auth: { persistSession: false },
+  });
   const Banner = (await supabase.from('Free-Netflix-Banner').select('*').eq('id',randomNumber)).data[0];
   let Recent = (await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).in("MainCategory", ['WebSeries', 'Movies','TV']).range(0,19)).data;
   let Songs = (await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).in("MainCategory", ['Songs']).range(0,19)).data;

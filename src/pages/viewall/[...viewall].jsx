@@ -34,7 +34,9 @@ const ViewAll = ({title,MapedData,page,totparem})=>{
 export async function getServerSideProps(context) {
     const { params } = context;
     const totparem = params.viewall[0];
-    const supabase =  createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_KEY);
+    const supabase =  createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_KEY, {
+        auth: { persistSession: false },
+      });
     let page = +params.viewall[1];
     if(page<=0){
       page = 1;
