@@ -54,12 +54,7 @@ const Player = ({ iframeUrl,title,image,MapedData,download}) => {
   );
 };
 export const getStaticPaths = async()=>{
-  var start = 10000000;
-  var end = 10000756;
-  var fileID = [];
-  for (var i = start; i <= end; i++) {
-    fileID.push(i);
-  }
+  const fileID = (await supabase.from('Free-Netflix-Darabase').select('*')).data.map((item)=> item.ID);
   return{
     paths: fileID.map((number)=>({params:{player:`${number}`}})),
     fallback:false,
