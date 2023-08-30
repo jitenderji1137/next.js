@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Script from 'next/script';
 import { createClient } from '@supabase/supabase-js';
 import { useRouter } from 'next/navigation'
-const Player = ({ iframeUrl,title,image,page,MapedData,ID}) => {
+const Player = ({ iframeUrl,title,image,page,MapedData,ID,download}) => {
   const router = useRouter()
   return (
     <>
@@ -24,6 +24,7 @@ const Player = ({ iframeUrl,title,image,page,MapedData,ID}) => {
         ></iframe>
       </div>
       <h1 className="m-5 text-xl max-w-lg">{title}</h1>
+      {download!==null?<Link className="bg-red-700 p-2 rounded-md m-5 text-center" style={{ width: '100px' }} href={download} target='_blank'>Download</Link>:<></>}
       <Link href="https://beta.publishers.adsterra.com/referral/aKMU588PJU">
         <Image alt="banner" className="rounded-lg w-80 m-5" src={image} width={1000} height={1000} />
       </Link>
@@ -45,9 +46,9 @@ const Player = ({ iframeUrl,title,image,page,MapedData,ID}) => {
         })}
       </div>
       <div className="flex mb-20 w-full justify-center items-center">
-        <Link className="bg-red-700 p-2 rounded-md m-3" style={{ width: '100px' }} href={page<=1?"#":`/player/${ID}/${page-1}`}>{page === 1 ? 'First Page' : 'Back'}</Link>
+        <Link className="bg-red-700 p-2 rounded-md m-3 text-center" style={{ width: '100px' }} href={page<=1?"#":`/player/${ID}/${page-1}`}>{page === 1 ? 'First Page' : 'Back'}</Link>
         <button className="bg-red-700 p-2 rounded-md m-3" style={{ width: '60px' }} disabled>{page}</button>
-        <Link className="bg-red-700 p-2 rounded-md m-3" style={{ width: '100px' }} href={MapedData.length<50?"#":`/player/${ID}/${page+1}`}>{MapedData.length < 50 ? 'Last Page' : 'Next'}</Link>
+        <Link className="bg-red-700 p-2 rounded-md m-3 text-center" style={{ width: '100px' }} href={MapedData.length<50?"#":`/player/${ID}/${page+1}`}>{MapedData.length < 50 ? 'Last Page' : 'Next'}</Link>
       </div>
       <Script async="async" data-cfasync="false" src="//toothbrushlimbperformance.com/8f469aefc3c6be500c096846b85f6b17/invoke.js"></Script>
     </>
@@ -68,9 +69,11 @@ export async function getServerSideProps(context) {
   const image = response.Image;
   const fileid = response.FileID;
   const ID = response.ID;
+  let download = null;
   let iframeUrl = '';
   if (response.Plateform === 'filemoon') {
     iframeUrl = `https://filemoon.sx/e/${fileid}?poster=${image}`;
+    download = `https://filemoon.sx/download/${fileid}`
   } else if (response.Plateform === 'Youtube') {
     iframeUrl = `https://www.youtube.com/embed/${fileid}`;
   } else if (response.Plateform === 'Vidsrc') {
@@ -81,6 +84,7 @@ export async function getServerSideProps(context) {
     iframeUrl = `https://vidsrc.me//embed//${embedType}?imdb=${fileid}`;
   } else if (response.Plateform === 'streamtape') {
     iframeUrl = `https://antiadtape.com/e/${fileid}?thumb=${image}`;
+    download = `https://antiadtape.com/v/${fileid}`
   }
   let MapedData = (await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).eq('Geans', response.Geans).in('MainCategory', [response.MainCategory]).range(Start,End)).data;
   return {
@@ -92,6 +96,7 @@ export async function getServerSideProps(context) {
       MapedData,
       fileid,
       ID,
+      download,
     },
   };
 }
