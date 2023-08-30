@@ -55,7 +55,7 @@ const Player = ({ iframeUrl,title,image,MapedData,download}) => {
 };
 export const getStaticPaths = async()=>{
   var start = 10000000;
-  var end = 10003000;
+  var end = 10000756;
   var fileID = [];
   for (var i = start; i <= end; i++) {
     fileID.push(i);
