@@ -79,6 +79,8 @@ export async function getServerSideProps(context) {
   } else if (response.Plateform === 'vidsrc') {
     const embedType = response.MainCategory === 'TV' ? 'tv' : 'movie';
     iframeUrl = `https://vidsrc.me//embed//${embedType}?imdb=${fileid}`;
+  } else if (response.Plateform === 'streamtape') {
+    iframeUrl = `https://antiadtape.com/e/${fileid}?thumb=${image}`;
   }
   let MapedData = (await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).eq('Geans', response.Geans).in('MainCategory', [response.MainCategory]).range(Start,End)).data;
   return {
