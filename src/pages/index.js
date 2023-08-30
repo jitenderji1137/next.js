@@ -4,6 +4,9 @@ import { useRef } from 'react';
 import { createClient } from "@supabase/supabase-js";
 import { useRouter } from 'next/navigation'
 import Link from 'next/link';
+const supabase =  createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_KEY, {
+  auth: { persistSession: false },
+});
 const Home = ({Banner,Mapdata})=>{
   const router = useRouter()
   return(
@@ -29,7 +32,7 @@ const Home = ({Banner,Mapdata})=>{
                   <span>{Banner.Duration}</span>
                   <span> | </span>
                   <span>{Banner.Geans} </span>
-                  <Link href={`/player/${Banner.Link}/1`}><button className='bg-red-700 hover:bg-red-600 px-4 py-2 mx-2.5 text-white rounded-lg' > Wacth </button></Link>
+                  <Link href={`/player/${Banner.Link}`}><button className='bg-red-700 hover:bg-red-600 px-4 py-2 mx-2.5 text-white rounded-lg' > Wacth </button></Link>
                 </div>
                 <div>
                   <div className='text-base pt-4'>{Banner.Paragraph}</div>
@@ -70,7 +73,7 @@ const Home = ({Banner,Mapdata})=>{
                         <button className="ScrollLeft" onClick={handelScrollLeft}>&nbsp;&nbsp; &#x276E;&#x276E; &nbsp;&nbsp;&nbsp;&nbsp;</button>
                             {Item[0].map((item) => (
                                 <div key={item.ID} className="aspect-video h-40 p-1 rounded mt-5 mb-5">
-                                    <Link href={`/player/${item.ID}/1`} target='_blank' onClick={()=>{setTimeout(() => {router.push("https://toothbrushlimbperformance.com/vzu6z5kf?key=0e1c984fe1a496834799af2ac36250d7")}, 500);}}><Image className='rounded h-full cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-125 hover:bg-indigo-500 duration-300' src={item.Image} alt={`Image ${item.ID}`} title={item.Title} width={1000} height={1000} /></Link>
+                                    <Link href={`/player/${item.ID}`} target='_blank' onClick={()=>{setTimeout(() => {router.push("https://toothbrushlimbperformance.com/vzu6z5kf?key=0e1c984fe1a496834799af2ac36250d7")}, 500);}}><Image className='rounded h-full cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-125 hover:bg-indigo-500 duration-300' src={item.Image} alt={`Image ${item.ID}`} title={item.Title} width={1000} height={1000} /></Link>
                                 </div>
                             ))}
                         <button className="ScrollRight" onClick={handelScrollRight}>&nbsp;&nbsp;&nbsp;&nbsp; &#x276F;&#x276F; &nbsp;&nbsp;</button>
@@ -86,9 +89,6 @@ const Home = ({Banner,Mapdata})=>{
 }
 export async function getServerSideProps() {
   var randomNumber = Math.floor(Math.random() * 8) + 1;
-  const supabase =  createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_KEY, {
-    auth: { persistSession: false },
-  });
   const Banner = (await supabase.from('Free-Netflix-Banner').select('*').eq('id',randomNumber)).data[0];
   let Recent = (await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).in("MainCategory", ['WebSeries', 'Movies','TV']).range(0,19)).data;
   let Songs = (await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).in("MainCategory", ['Songs']).range(0,19)).data;
@@ -110,5 +110,4 @@ export async function getServerSideProps() {
     },
   };
 }
-
 export default Home;

@@ -4,7 +4,10 @@ import Link from 'next/link';
 import Script from 'next/script';
 import { createClient } from '@supabase/supabase-js';
 import { useRouter } from 'next/navigation'
-const Player = ({ iframeUrl,title,image,page,MapedData,ID,download}) => {
+const supabase =  createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_KEY, {
+  auth: { persistSession: false },
+});
+const Player = ({ iframeUrl,title,image,MapedData,download}) => {
   const router = useRouter()
   return (
     <>
@@ -38,39 +41,36 @@ const Player = ({ iframeUrl,title,image,page,MapedData,ID,download}) => {
         />
       </Link>
       <div id="container-8f469aefc3c6be500c096846b85f6b17"></div>
+      <button className="bg-zinc-700 font-semibold p-4 rounded-md m-5 text-xl max-w-lg text-center">Recommendation</button>
       <div className='grid grid-cols-5 gap-3 mb-5'>
         {MapedData.map((item)=>{
             return <div key={item.ID} className='aspect-video'>
-                <Link href={`/player/${item.ID}/1`} target='_blank' onClick={()=>{setTimeout(() => {router.push("https://toothbrushlimbperformance.com/vzu6z5kf?key=0e1c984fe1a496834799af2ac36250d7")}, 500);}}><Image className='bg-stone-400 rounded h-full w-full cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-125 hover:bg-indigo-500 duration-300' src={item.Image} alt={item.Title} title={item.Title} width={500} height={500} /></Link>
+                <Link href={`/player/${item.ID}`} target='_blank' onClick={()=>{setTimeout(() => {router.push("https://toothbrushlimbperformance.com/vzu6z5kf?key=0e1c984fe1a496834799af2ac36250d7")}, 500);}}><Image className='bg-stone-400 rounded h-full w-full cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-125 hover:bg-indigo-500 duration-300' src={item.Image} alt={item.Title} title={item.Title} width={500} height={500} /></Link>
             </div>
         })}
-      </div>
-      <div className="flex mb-20 w-full justify-center items-center">
-        <Link className="bg-red-700 p-2 rounded-md m-3 text-center" style={{ width: '100px' }} href={page<=1?"#":`/player/${ID}/${page-1}`}>{page === 1 ? 'First Page' : 'Back'}</Link>
-        <button className="bg-red-700 p-2 rounded-md m-3" style={{ width: '60px' }} disabled>{page}</button>
-        <Link className="bg-red-700 p-2 rounded-md m-3 text-center" style={{ width: '100px' }} href={MapedData.length<50?"#":`/player/${ID}/${page+1}`}>{MapedData.length < 50 ? 'Last Page' : 'Next'}</Link>
       </div>
       <Script async="async" data-cfasync="false" src="//toothbrushlimbperformance.com/8f469aefc3c6be500c096846b85f6b17/invoke.js"></Script>
     </>
   );
 };
-
-export async function getServerSideProps(context) {
-  const { params } = context;
-  let page = +params.player[1];
-  if(page<=0){
-    page = 1;
+export const getStaticPaths = async()=>{
+  var start = 10000000;
+  var end = 10003000;
+  var fileID = [];
+  for (var i = start; i <= end; i++) {
+    fileID.push(i);
   }
-  const Start = (page - 1)*49;
-  const End = page*49;
-  const supabase =  createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_KEY, {
-    auth: { persistSession: false },
-  });
-  const response = (await supabase.from('Free-Netflix-Darabase').select('*').eq('ID', params.player[0])).data[0];
+  return{
+    paths: fileID.map((number)=>({params:{player:`${number}`}})),
+    fallback:false,
+  }
+}
+export const getStaticProps =  async(context)=>{
+  const player = context.params.player;
+  const response = (await supabase.from('Free-Netflix-Darabase').select('*').eq('ID', player)).data[0];
   const title = response.Title;
   const image = response.Image;
   const fileid = response.FileID;
-  const ID = response.ID;
   let download = null;
   let iframeUrl = '';
   if (response.Plateform === 'filemoon') {
@@ -88,16 +88,14 @@ export async function getServerSideProps(context) {
     iframeUrl = `https://antiadtape.com/e/${fileid}?thumb=${image}`;
     download = `https://antiadtape.com/v/${fileid}`
   }
-  let MapedData = (await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).eq('Geans', response.Geans).in('MainCategory', [response.MainCategory]).range(Start,End)).data;
+  let MapedData = (await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).eq('Geans', response.Geans).in('MainCategory', [response.MainCategory]).range(0,49)).data;
   return {
     props: {
       iframeUrl,
       title,
       image,
-      page,
       MapedData,
       fileid,
-      ID,
       download,
     },
   };
