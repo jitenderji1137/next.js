@@ -46,7 +46,7 @@ export async function getServerSideProps(context) {
     var title ;
     var MapedData ;
     const Make_A_Fetch_Request = async(part1,part2)=>{
-        MapedData = (await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).in(part1, part2).range(Start,End)).data;
+        MapedData = (await supabase.from('Free-Netflix-Darabase').select('ID,Image,Title').order('ID', { ascending: false }).in(part1, part2).range(Start,End)).data;
     }
     switch(params.viewall[0]){
     case "recent":

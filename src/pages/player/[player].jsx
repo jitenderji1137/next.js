@@ -83,7 +83,7 @@ export const getStaticProps =  async(context)=>{
     iframeUrl = `https://antiadtape.com/e/${fileid}?thumb=${image}`;
     download = `https://antiadtape.com/v/${fileid}`
   }
-  let MapedData = (await supabase.from('Free-Netflix-Darabase').select('*').order('ID', { ascending: false }).eq('Geans', response.Geans).in('MainCategory', [response.MainCategory]).range(0,49)).data;
+  let MapedData = (await supabase.from('Free-Netflix-Darabase').select('ID,Image,Title').order('ID', { ascending: false }).eq('Geans', response.Geans).in('MainCategory', [response.MainCategory]).range(0,49)).data;
   return {
     props: {
       iframeUrl,
