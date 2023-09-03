@@ -46,9 +46,9 @@ const SearchBar = ({})=> {
         </>
     );
   }
-  export async function getServerSideProps(context) {
+export const getStaticProps =  async()=>{
     return {
         props: {},
       };
-  }
-  export default SearchBar;
+}
+export default SearchBar;
