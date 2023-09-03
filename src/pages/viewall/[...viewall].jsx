@@ -3,6 +3,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { createClient } from '@supabase/supabase-js';
 import { useRouter } from 'next/navigation'
+const supabase =  createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_KEY, {
+    auth: { persistSession: false },
+});
 const ViewAll = ({title,MapedData,page,totparem})=>{
     const router = useRouter()
     return(
@@ -30,13 +33,28 @@ const ViewAll = ({title,MapedData,page,totparem})=>{
         </>
     );
 }
-
-export async function getServerSideProps(context) {
+export const getStaticPaths = async()=>{
+    let arr = [];
+    const GET = async(part1,part2)=>{return (await supabase.from('Free-Netflix-Darabase').select('ID').in(part1, part2)).data.length;}
+    for(let a = 1;a<=(Math.ceil((await GET("MainCategory",['WebSeries', 'Movies','TV']))/50));a++){arr.push({params:{viewall:[`recent`,`${a}`]}})}
+    for(let a = 1;a<=(Math.ceil((await GET("MainCategory",['TV']))/50));a++){arr.push({params:{viewall:[`tv`,`${a}`]}})}
+    for(let a = 1;a<=(Math.ceil((await GET("MainCategory",['Songs']))/50));a++){arr.push({params:{viewall:[`songs`,`${a}`]}})}
+    for(let a = 1;a<=(Math.ceil((await GET("MainCategory",['WebSeries']))/50));a++){arr.push({params:{viewall:[`web-series`,`${a}`]}})}
+    for(let a = 1;a<=(Math.ceil((await GET("Geans",['Romantic']))/50));a++){arr.push({params:{viewall:[`romantic`,`${a}`]}})}
+    for(let a = 1;a<=(Math.ceil((await GET("Geans",['Action']))/50));a++){arr.push({params:{viewall:[`action`,`${a}`]}})}
+    for(let a = 1;a<=(Math.ceil((await GET("Geans",['Comedy']))/50));a++){arr.push({params:{viewall:[`comedy`,`${a}`]}})}
+    for(let a = 1;a<=(Math.ceil((await GET("Geans",['Crime']))/50));a++){arr.push({params:{viewall:[`crime`,`${a}`]}})}
+    for(let a = 1;a<=(Math.ceil((await GET("Geans",['Drama']))/50));a++){arr.push({params:{viewall:[`drama`,`${a}`]}})}
+    for(let a = 1;a<=(Math.ceil((await GET("Geans",['Horror']))/50));a++){arr.push({params:{viewall:[`horror`,`${a}`]}})}
+    for(let a = 1;a<=(Math.ceil((await GET("Geans",['Thriller']))/50));a++){arr.push({params:{viewall:[`trailler`,`${a}`]}})}
+    for(let a = 1;a<=(Math.ceil((await GET("Geans",['Adventure']))/50));a++){arr.push({params:{viewall:[`adventure`,`${a}`]}})}
+    for(let a = 1;a<=(Math.ceil((await GET("MainCategory",['Movies']))/50));a++){arr.push({params:{viewall:[`movies`,`${a}`]}})}
+    for(let a = 1;a<=(Math.ceil((await GET("MainCategory",['Adult']))/50));a++){arr.push({params:{viewall:[`adult`,`${a}`]}})}
+    return{paths: arr,fallback:false,}
+  }
+export async function getStaticProps(context) {
     const { params } = context;
     const totparem = params.viewall[0];
-    const supabase =  createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_KEY, {
-        auth: { persistSession: false },
-      });
     let page = +params.viewall[1];
     if(page<=0){
       page = 1;

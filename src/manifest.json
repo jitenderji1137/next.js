@@ -1,0 +1,7 @@
+{
+    "name": "Free Netflix :- Watch All New Movies and Shows For Free or Download in HD",
+    "short_name": "Free Netflix",
+    "description": "Unlock a world of entertainment with Free Netflix! Stream or download the latest movies and shows in stunning HD quality, all without a subscription. Enjoy endless hours of entertainment at your fingertips, with a wide range of content to choose from.",
+    "start_url": "/",
+    "icons": [{"src": "/logo.png","sizes": "any","type": "image/png"}]
+ }
