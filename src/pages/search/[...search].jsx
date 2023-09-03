@@ -44,7 +44,7 @@ export async function getServerSideProps(context) {
   const supabase =  createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_KEY, {
     auth: { persistSession: false },
   });
-  const MapedData = (await supabase.from('Free-Netflix-Darabase').select('ID,Image,Title').order('ID', { ascending: false }).ilike('Title', query).range(Start,End)).data;
+  const MapedData = (await supabase.from(process.env.NEXT_PUBLIC_DataBase_Name).select('ID,Image,Title').order('ID', { ascending: false }).ilike('Title', query).range(Start,End)).data;
   return {
     props: {
       SearchText,MapedData,page

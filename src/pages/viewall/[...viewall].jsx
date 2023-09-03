@@ -35,7 +35,7 @@ const ViewAll = ({title,MapedData,page,totparem})=>{
 }
 export const getStaticPaths = async()=>{
     let arr = [];
-    const GET = async(part1,part2)=>{return (await supabase.from('Free-Netflix-Darabase').select('ID').in(part1, part2)).data.length;}
+    const GET = async(part1,part2)=>{return (await supabase.from(process.env.NEXT_PUBLIC_DataBase_Name).select('ID').in(part1, part2)).data.length;}
     for(let a = 1;a<=(Math.ceil((await GET("MainCategory",['WebSeries', 'Movies','TV']))/50));a++){arr.push({params:{viewall:[`recent`,`${a}`]}})}
     for(let a = 1;a<=(Math.ceil((await GET("MainCategory",['TV']))/50));a++){arr.push({params:{viewall:[`tv`,`${a}`]}})}
     for(let a = 1;a<=(Math.ceil((await GET("MainCategory",['Songs']))/50));a++){arr.push({params:{viewall:[`songs`,`${a}`]}})}
@@ -64,7 +64,7 @@ export async function getStaticProps(context) {
     var title ;
     var MapedData ;
     const Make_A_Fetch_Request = async(part1,part2)=>{
-        MapedData = (await supabase.from('Free-Netflix-Darabase').select('ID,Image,Title').order('ID', { ascending: false }).in(part1, part2).range(Start,End)).data;
+        MapedData = (await supabase.from(process.env.NEXT_PUBLIC_DataBase_Name).select('ID,Image,Title').order('ID', { ascending: false }).in(part1, part2).range(Start,End)).data;
     }
     switch(params.viewall[0]){
     case "recent":

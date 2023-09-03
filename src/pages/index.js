@@ -89,25 +89,9 @@ const Home = ({Banner,Mapdata})=>{
 }
 export const getStaticProps =  async()=>{
   var randomNumber = Math.floor(Math.random() * 8) + 1;
-  const Banner = (await supabase.from('Free-Netflix-Banner').select('*').eq('id',randomNumber)).data[0];
-  let Recent = (await supabase.from('Free-Netflix-Darabase').select('ID,Image,Title').order('ID', { ascending: false }).in("MainCategory", ['WebSeries', 'Movies','TV']).range(0,19)).data;
-  let Songs = (await supabase.from('Free-Netflix-Darabase').select('ID,Image,Title').order('ID', { ascending: false }).in("MainCategory", ['Songs']).range(0,19)).data;
-  let WebSeries = (await supabase.from('Free-Netflix-Darabase').select('ID,Image,Title').order('ID', { ascending: false }).in("MainCategory", ['WebSeries']).range(0,19)).data;
-  let TV = (await supabase.from('Free-Netflix-Darabase').select('ID,Image,Title').order('ID', { ascending: false }).in("MainCategory", ['TV']).range(0,19)).data;
-  let Romantic = (await supabase.from('Free-Netflix-Darabase').select('ID,Image,Title').order('ID', { ascending: false }).in("Geans", ['Romantic']).range(0,19)).data;
-  let Action = (await supabase.from('Free-Netflix-Darabase').select('ID,Image,Title').order('ID', { ascending: false }).in("Geans", ['Action']).range(0,19)).data;
-  let Comedy = (await supabase.from('Free-Netflix-Darabase').select('ID,Image,Title').order('ID', { ascending: false }).in("Geans", ['Comedy']).range(0,19)).data;
-  let Crime = (await supabase.from('Free-Netflix-Darabase').select('ID,Image,Title').order('ID', { ascending: false }).in("Geans", ['Crime']).range(0,19)).data;
-  let Drama = (await supabase.from('Free-Netflix-Darabase').select('ID,Image,Title').order('ID', { ascending: false }).in("Geans", ['Drama']).range(0,19)).data;
-  let Horror = (await supabase.from('Free-Netflix-Darabase').select('ID,Image,Title').order('ID', { ascending: false }).in("Geans", ['Horror']).range(0,19)).data;
-  let Thriller = (await supabase.from('Free-Netflix-Darabase').select('ID,Image,Title').order('ID', { ascending: false }).in("Geans", ['Thriller']).range(0,19)).data;
-  let Adventure = (await supabase.from('Free-Netflix-Darabase').select('ID,Image,Title').order('ID', { ascending: false }).in("Geans", ['Adventure']).range(0,19)).data;
-  let Adult = (await supabase.from('Free-Netflix-Darabase').select('ID,Image,Title').order('ID', { ascending: false }).in("MainCategory", ['Adult']).range(0,19)).data;
-  const Mapdata = [[Recent,"recent","Recent Uploaded ..."],[Songs,"songs","Songs ..."],[WebSeries,"web-series","Web Series ..."],[TV,"tv","TV Shows ..."],[Romantic,"romantic","Romantic ..."],[Action,"action","Action ..."],[Comedy,"comedy","Comedy ..."],[Crime,"crime","Crime ..."],[Drama,"drama","Drama ..."],[Horror,"horror","Horror ..."],[Thriller,"trailler","Trailler ..."],[Adventure,"adventure","Adventure ..."],[Adult,"adult","Adult ..."]];
-  return {
-    props: {
-      Banner,Mapdata,
-    },
-  };
+  const GET = async(part1,part2)=>{return (await supabase.from(process.env.NEXT_PUBLIC_DataBase_Name).select('ID,Image,Title').order('ID', { ascending: false }).in(part1, part2)).data}
+  const Banner = (await supabase.from(process.env.NEXT_PUBLIC_DataBase_Banner).select('*').eq('id',randomNumber)).data[0];
+  const Mapdata = [[(await GET("MainCategory",['WebSeries', 'Movies','TV'])),"recent","Recent Uploaded ..."],[(await GET("MainCategory", ['Songs'])),"songs","Songs ..."],[(await GET("MainCategory", ['WebSeries'])),"web-series","Web Series ..."],[(await GET("MainCategory", ['TV'])),"tv","TV Shows ..."],[(await GET("Geans", ['Romantic'])),"romantic","Romantic ..."],[(await GET("Geans", ['Action'])),"action","Action ..."],[(await GET("Geans", ['Comedy'])),"comedy","Comedy ..."],[(await GET("Geans", ['Crime'])),"crime","Crime ..."],[(await GET("Geans", ['Drama'])),"drama","Drama ..."],[(await GET("Geans", ['Horror'])),"horror","Horror ..."],[(await GET("Geans", ['Thriller'])),"trailler","Trailler ..."],[(await GET("Geans", ['Adventure'])),"adventure","Adventure ..."],[(await GET("MainCategory", ['Adult'])),"adult","Adult ..."]];
+  return {props: {Banner,Mapdata}};
 }
 export default Home;

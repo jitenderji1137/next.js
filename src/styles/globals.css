@@ -293,7 +293,7 @@ footer{
   }
   .navshadow{
     justify-content: space-between;
-    z-index: 31;
+    z-index: 30;
   }
   .navshadow>span:nth-child(1) {
     width: 50%;
@@ -312,9 +312,6 @@ footer{
   }
   .backgroundtransprant>form>a{
     display: none;
-  }
-  .backgroundtransprant{
-    margin: 0 5px 0 0;
   }
 }
 @media screen and (max-width: 500px){
@@ -335,9 +332,10 @@ footer{
   }
   .backgroundtransprant{
     border-radius: 10px;
-    border-color: red;
+    margin: 0;
   }
   .inputtag{
     border-color: #242424;
+    margin: 0;
   }
 }

@@ -54,7 +54,7 @@ const Player = ({ iframeUrl,title,image,MapedData,download}) => {
   );
 };
 export const getStaticPaths = async()=>{
-  const fileID = (await supabase.from('Free-Netflix-Darabase').select('ID')).data.map((item)=> item.ID);
+  const fileID = (await supabase.from(process.env.NEXT_PUBLIC_DataBase_Name).select('ID')).data.map((item)=> item.ID);
   return{
     paths: fileID.map((number)=>({params:{player:`${number}`}})),
     fallback:false,
@@ -62,7 +62,7 @@ export const getStaticPaths = async()=>{
 }
 export const getStaticProps =  async(context)=>{
   const player = context.params.player;
-  const response = (await supabase.from('Free-Netflix-Darabase').select('*').eq('ID', player)).data[0];
+  const response = (await supabase.from(process.env.NEXT_PUBLIC_DataBase_Name).select('*').eq('ID', player)).data[0];
   const title = response.Title;
   const image = response.Image;
   const fileid = response.FileID;
@@ -83,7 +83,7 @@ export const getStaticProps =  async(context)=>{
     iframeUrl = `https://antiadtape.com/e/${fileid}?thumb=${image}`;
     download = `https://antiadtape.com/v/${fileid}`
   }
-  let MapedData = (await supabase.from('Free-Netflix-Darabase').select('ID,Image,Title').order('ID', { ascending: false }).eq('Geans', response.Geans).in('MainCategory', [response.MainCategory]).range(0,49)).data;
+  let MapedData = (await supabase.from(process.env.NEXT_PUBLIC_DataBase_Name).select('ID,Image,Title').order('ID', { ascending: false }).eq('Geans', response.Geans).in('MainCategory', [response.MainCategory]).range(0,49)).data;
   return {
     props: {
       iframeUrl,

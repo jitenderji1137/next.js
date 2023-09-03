@@ -24,8 +24,8 @@ export default function Footer(){
                     <li><Link href="/" className="colorgray">Home</Link></li>
                     <li><Link href="/search" className="colorgray">Search</Link></li>
                     <li><Link href="/viewall/movies/1" className="colorgray">Movies</Link></li>
-                    <li><Link href="/viewall/HomePageWebSeriesData/1" className="colorgray">Web Series</Link></li>
-                    <li><Link href="/viewall/HomePageAdultData/1" className="colorgray">Adult 18+</Link></li>
+                    <li><Link href="/viewall/web-series/1" className="colorgray">Web Series</Link></li>
+                    <li><Link href="/viewall/adult/1" className="colorgray">Adult 18+</Link></li>
                 </ul>    
             </div>
             <div className="mx-2.5">
