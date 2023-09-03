@@ -32,7 +32,7 @@ export default function SearchBar({button}) {
                 </div>
                 {search.length !== 0?<>
                     {search.map((item)=>{
-                        return <Link href={`/player/${item.ID}`} key={item.ID} className='w-4/5 backgroundtransprant m-auto mt-4 py-2.5 px-11 rounded-lg border border-slate-800 border-solid flex'>
+                        return <Link href={`/player/${item.ID}`} onClick={()=>{button(false)}} key={item.ID} className='w-4/5 backgroundtransprant m-auto mt-4 py-2.5 px-11 rounded-lg border border-slate-800 border-solid flex'>
                             <div className='aspect-video h-16'><Image src={item.Image} className='rounded-md' alt={item.Title} title={item.Title} width={500} height={500}/></div>
                             <div className='ml-2.5 text-sm'><h1>{(item.Title).substring(0, 60)}</h1></div>
                         </Link>
