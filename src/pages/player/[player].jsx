@@ -26,23 +26,23 @@ const Player = ({ iframeUrl,title,image,MapedData,download}) => {
           src={iframeUrl}
         ></iframe>
       </div>
-      <h1 className="m-5 text-xl max-w-lg">{title}</h1>
+      <h1 className="m-5 text-2xl max-w-lg">{title}</h1>
       {download!==null?<Link className="bg-red-700 p-2 rounded-md m-5 text-center" style={{ width: '100px' }} href={download} target='_blank'>Download</Link>:<></>}
       <Link href="https://beta.publishers.adsterra.com/referral/aKMU588PJU">
-        <Image alt="banner" className="rounded-lg w-80 m-5" src={image} width={1000} height={1000} />
+        <Image alt="banner" className="playerimage rounded-lg w-80 m-5" src={image} width={1000} height={1000} />
       </Link>
       <Link href="https://beta.publishers.adsterra.com/referral/aKMU588PJU">
         <Image
           alt="banner"
-          style={{ margin: 'auto', marginBottom: '20px' }}
+          style={{ margin: '20px 0 20px 0'}}
           src="https://landings-cdn.adsterratech.com/referralBanners/gif/720x90_adsterra_reff.gif"
           width={700}
           height={700}
         />
       </Link>
       <div id="container-8f469aefc3c6be500c096846b85f6b17"></div>
-      <button className="bg-zinc-700 font-semibold p-4 rounded-md m-5 text-xl max-w-lg text-center">Recommendation</button>
-      <div className='grid grid-cols-5 gap-3 mb-5'>
+      <button className="recommedbut bg-zinc-700 font-semibold p-4 rounded-md m-5 text-xl max-w-lg text-center">Recommendation</button>
+      <div className='grid grid-cols-5 gap-3 mb-16'>
         {MapedData.map((item)=>{
             return <div key={item.ID} className='aspect-video'>
                 <Link href={`/player/${item.ID}`} target='_blank' onClick={()=>{setTimeout(() => {router.push("https://toothbrushlimbperformance.com/vzu6z5kf?key=0e1c984fe1a496834799af2ac36250d7")}, 500);}}><Image className='bg-stone-400 rounded h-full w-full cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-125 hover:bg-indigo-500 duration-300' src={item.Image} alt={item.Title} title={item.Title} width={500} height={500} /></Link>
