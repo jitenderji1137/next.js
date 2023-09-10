@@ -13,9 +13,18 @@ const Home = ({Banner,Mapdata})=>{
     <>
        <Head>
         <title>Free Netflix :- Watch All New Movies and Shows For Free or Download in HD</title>
-        <meta name="description" content="On Free Netflix Watch All Movies Or Web Series For Free" />
+        <meta name="description" content="Unlock the ultimate entertainment experience with Free Netflix, where every movie and web series is at your fingertips, completely free of charge. No more waiting for the latest releases, no more financial barriers, Free Netflix is your passport to endless entertainment, available anytime, anywhere." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
+        <meta name="generator" content="Free Netflix"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="Free Netflix"/>
+        <meta property="og:description" content="Unlock the ultimate entertainment experience with Free Netflix, where every movie and web series is at your fingertips, completely free of charge. No more waiting for the latest releases, no more financial barriers, Free Netflix is your passport to endless entertainment, available anytime, anywhere."/>
+        <meta property="og:image" content="https://i.postimg.cc/TPkwsTcK/Screenshot-33.png"/>
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta name="twitter:title" content="Free Netflix"/>
+        <meta name="twitter:description" content="Unlock the ultimate entertainment experience with Free Netflix, where every movie and web series is at your fingertips, completely free of charge. No more waiting for the latest releases, no more financial barriers, Free Netflix is your passport to endless entertainment, available anytime, anywhere."/>
+        <meta name="twitter:image" content="https://i.postimg.cc/TPkwsTcK/Screenshot-33.png"/> 
+       </Head>
       <Image className='fixed z-0 w-screen' src={Banner.Big_Image} alt='banner' width={3000} height={3000} />
       <div className="z-1 relative">
       <div className='flexofnav'>

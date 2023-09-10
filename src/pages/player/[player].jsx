@@ -12,8 +12,18 @@ const Player = ({ iframeUrl,title,image,MapedData,download}) => {
   return (
     <>
       <Head>
-        <title>{`Player - ${title || 'Watching On Free Netflix'}`}</title>
-        <meta name="description" content={title || ''} />
+        <title>{`${title} || Watch All New Movies and Shows For Free or Download in HD`}</title>
+        <meta name="description" content={`${title} :- Unlock the ultimate entertainment experience with Free Netflix, where every movie and web series is at your fingertips, completely free of charge. No more waiting for the latest releases, no more financial barriers, Free Netflix is your passport to endless entertainment, available anytime, anywhere.`} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content={`${title} :- On Free Netflix`}/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content={`${title} :- On Free Netflix`}/>
+        <meta property="og:description" content={`${title} :- Unlock the ultimate entertainment experience with Free Netflix, where every movie and web series is at your fingertips, completely free of charge. No more waiting for the latest releases, no more financial barriers, Free Netflix is your passport to endless entertainment, available anytime, anywhere.`}/>
+        <meta property="og:image" content={image}/>
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta name="twitter:title" content={`${title} :- On Free Netflix`}/>
+        <meta name="twitter:description" content={`${title} :- Unlock the ultimate entertainment experience with Free Netflix, where every movie and web series is at your fingertips, completely free of charge. No more waiting for the latest releases, no more financial barriers, Free Netflix is your passport to endless entertainment, available anytime, anywhere.`}/>
+        <meta name="twitter:image" content={image}/> 
       </Head>
       <div id="div1" className="aspect-video rounded-lg">
         <iframe
