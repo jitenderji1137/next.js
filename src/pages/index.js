@@ -97,9 +97,8 @@ const Home = ({Banner,Mapdata})=>{
   )
 }
 export const getStaticProps =  async()=>{
-  var randomNumber = Math.floor(Math.random() * 8) + 1;
   const GET = async(part1,part2)=>{return (await supabase.from(process.env.NEXT_PUBLIC_DataBase_Name).select('ID,Image,Title').order('ID', { ascending: false }).in(part1, part2).range(0,19)).data}
-  const Banner = (await supabase.from(process.env.NEXT_PUBLIC_DataBase_Banner).select('*').eq('id',randomNumber)).data[0];
+  const Banner = (await supabase.from(process.env.NEXT_PUBLIC_DataBase_Banner).select('*').eq('id',1)).data[0];
   const Mapdata = [[(await GET("MainCategory",['WebSeries', 'Movies','TV'])),"recent","Recent Uploaded ..."],[(await GET("MainCategory", ['Songs'])),"songs","Songs ..."],[(await GET("MainCategory", ['WebSeries'])),"web-series","Web Series ..."],[(await GET("MainCategory", ['TV'])),"tv","TV Shows ..."],[(await GET("Geans", ['Romantic'])),"romantic","Romantic ..."],[(await GET("Geans", ['Action'])),"action","Action ..."],[(await GET("Geans", ['Comedy'])),"comedy","Comedy ..."],[(await GET("Geans", ['Crime'])),"crime","Crime ..."],[(await GET("Geans", ['Drama'])),"drama","Drama ..."],[(await GET("Geans", ['Horror'])),"horror","Horror ..."],[(await GET("Geans", ['Thriller'])),"trailler","Trailler ..."],[(await GET("Geans", ['Adventure'])),"adventure","Adventure ..."],[(await GET("MainCategory", ['Adult'])),"adult","Adult ..."]];
   return {props: {Banner,Mapdata}};
 }
