@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Script from 'next/script';
 import { useRef } from 'react';
 import { createClient } from "@supabase/supabase-js";
 import { useRouter } from 'next/navigation'
@@ -9,6 +10,17 @@ const supabase =  createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env
 });
 const Home = ({Banner,Mapdata})=>{
   const router = useRouter()
+  const jsonLdData = {
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Free Netflix :- Watch All New Movies and Shows For Free or Download in HD",
+    "url": "https://free-netflix.vercel.app/",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://free-netflix.vercel.app/search/{search_term_string}/1",
+      "query-input": "required name=search_term_string"
+    }
+  };
   return(
     <>
        <Head>
@@ -17,14 +29,58 @@ const Home = ({Banner,Mapdata})=>{
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="generator" content="Free Netflix"/>
         <meta property="og:type" content="website"/>
-        <meta property="og:title" content="Free Netflix"/>
+        <meta property="og:title" content="Free Netflix :- Watch All New Movies and Shows For Free or Download in HD"/>
         <meta property="og:description" content="Unlock the ultimate entertainment experience with Free Netflix, where every movie and web series is at your fingertips, completely free of charge. No more waiting for the latest releases, no more financial barriers, Free Netflix is your passport to endless entertainment, available anytime, anywhere."/>
         <meta property="og:image" content="https://i.postimg.cc/TPkwsTcK/Screenshot-33.png"/>
         <meta name="twitter:card" content="summary_large_image"/>
         <meta name="twitter:title" content="Free Netflix"/>
         <meta name="twitter:description" content="Unlock the ultimate entertainment experience with Free Netflix, where every movie and web series is at your fingertips, completely free of charge. No more waiting for the latest releases, no more financial barriers, Free Netflix is your passport to endless entertainment, available anytime, anywhere."/>
-        <meta name="twitter:image" content="https://i.postimg.cc/TPkwsTcK/Screenshot-33.png"/> 
+        <meta name="twitter:image" content="https://i.postimg.cc/TPkwsTcK/Screenshot-33.png"/>
+        <meta content='Unlock the ultimate entertainment experience with Free Netflix, where every movie and web series is at your fingertips, completely free of charge. No more waiting for the latest releases, no more financial barriers, Free Netflix is your passport to endless entertainment, available anytime, anywhere.' name='description'/>
+        <meta content='index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1' name='robots'/>
+        <meta content='Free Netflix :- Watch All New Movies and Shows For Free or Download in HD' property='og:title'/>
+        <meta content='https://free-netflix.vercel.app/' property='og:url'/>
+        <meta content='Unlock the ultimate entertainment experience with Free Netflix, where every movie and web series is at your fingertips, completely free of charge. No more waiting for the latest releases, no more financial barriers, Free Netflix is your passport to endless entertainment, available anytime, anywhere.' property='og:description'/>
+        <meta content='Free Netflix :- Watch All New Movies and Shows For Free or Download in HD' property='og:site_name'/>
+        <meta content='netflix,free-netflix,netflixfree,how-to-watch-netflix-for-free,movies,webseries,yomovies,downloadmovies' name='keywords'/>
+        <link href='https://free-netflix.vercel.app/' hreflang='en' rel='alternate'/>
+        <meta content='https://free-netflix.vercel.app/' name='twitter:domain'/>
+        <meta content='From this Website you can watch live free movies and even you can download in 480p and 1080p Full HD , only on nramovies' name='twitter:creator'/>
+        <meta content='en_US' property='og:locale'/>
+        <meta content='en_GB' property='og:locale:alternate'/>
+        <meta content='id_ID' property='og:locale:alternate'/>
+        <link href='//1.bp.blogspot.com' rel='dns-prefetch'/>
+        <link href='//28.2bp.blogspot.com' rel='dns-prefetch'/>
+        <link href='//3.bp.blogspot.com' rel='dns-prefetch'/>
+        <link href='//4.bp.blogspot.com' rel='dns-prefetch'/>
+        <link href='//2.bp.blogspot.com' rel='dns-prefetch'/>
+        <link href='//www.blogger.com' rel='dns-prefetch'/>
+        <link href='//maxcdn.bootstrapcdn.com' rel='dns-prefetch'/>
+        <link href='//fonts.googleapis.com' rel='dns-prefetch'/>
+        <link href='//use.fontawesome.com' rel='dns-prefetch'/>
+        <link href='//ajax.googleapis.com' rel='dns-prefetch'/>
+        <link href='//resources.blogblog.com' rel='dns-prefetch'/>
+        <link href='//feeds.feedburner.com' rel='dns-prefetch'/>
+        <link href='//cdnjs.cloudflare.com' rel='dns-prefetch'/>
+        <link href='//www.google-analytics.com' rel='dns-prefetch'/>
+        <link href='//themes.googleusercontent.com ' rel='dns-prefetch'/>
+        <link href='//pagead2.googlesyndication.com' rel='dns-prefetch'/>
+        <link href='//googleads.g.doubleclick.net' rel='dns-prefetch'/>
+        <link href='//www.gstatic.com' rel='preconnect'/>
+        <link href='//www.googletagservices.com' rel='dns-prefetch'/>
+        <link href='//static.xx.fbcdn.net' rel='dns-prefetch'/>
+        <link href='//tpc.googlesyndication.com' rel='dns-prefetch'/>
+        <link href='//apis.google.com' rel='dns-prefetch'/>
+        <link href='//www.facebook.com' rel='dns-prefetch'/>
+        <link href='//connect.facebook.net' rel='dns-prefetch'/>
+        <link href='//twitter.com' rel='dns-prefetch'/>
+        <link href='//www.youtube.com' rel='dns-prefetch'/>
+        <link href='//www.pinterest.com' rel='dns-prefetch'/>
+        <link href='//www.linkedin.com' rel='dns-prefetch'/>
        </Head>
+       <Script type="application/ld+json">
+          {JSON.stringify(jsonLdData)}
+       </Script>
       <Image className='fixed z-0 w-screen' src={Banner.Big_Image} alt='banner' width={3000} height={3000} />
       <div className="z-1 relative">
       <div className='flexofnav'>
@@ -82,7 +138,7 @@ const Home = ({Banner,Mapdata})=>{
                         <button className="ScrollLeft" onClick={handelScrollLeft}>&nbsp;&nbsp; &#x276E;&#x276E; &nbsp;&nbsp;&nbsp;&nbsp;</button>
                             {Item[0].map((item) => (
                                 <div key={item.ID} className="aspect-video h-40 p-1 rounded mt-5 mb-5">
-                                    <Link href={`/player/${item.ID}`} target='_blank' onClick={()=>{setTimeout(() => {router.push("https://toothbrushlimbperformance.com/vzu6z5kf?key=0e1c984fe1a496834799af2ac36250d7")}, 500);}}><Image className='rounded h-full cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-125 hover:bg-indigo-500 duration-300' src={item.Image} alt={`Image ${item.ID}`} title={item.Title} width={1000} height={1000} /></Link>
+                                    <Link href={`/player/${item.ID}`} target='_blank' onClick={()=>{setTimeout(() => {router.push("https://playgroundordinarilymess.com/w87yhs080q?key=005916bb020799a6a7fb36594e6acc66")}, 500);}}><Image className='rounded h-full cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-125 hover:bg-indigo-500 duration-300' src={item.Image} alt={`Image ${item.ID}`} title={item.Title} width={1000} height={1000} /></Link>
                                 </div>
                             ))}
                         <button className="ScrollRight" onClick={handelScrollRight}>&nbsp;&nbsp;&nbsp;&nbsp; &#x276F;&#x276F; &nbsp;&nbsp;</button>
