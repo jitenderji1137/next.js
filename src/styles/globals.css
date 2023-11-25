@@ -13,7 +13,7 @@ html {
   background-color: #000;
 }
 html::-webkit-scrollbar {
-      width: 7px; 
+      width: 0; 
 }
 
 html::-webkit-scrollbar-track {
