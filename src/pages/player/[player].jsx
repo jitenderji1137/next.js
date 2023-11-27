@@ -111,7 +111,7 @@ const Player = ({ iframeUrl,title,image,MapedData,download,player}) => {
       <div className='grid grid-cols-5 gap-3 mb-16'>
         {MapedData.map((item)=>{
             return <div key={item.ID} className='aspect-video'>
-                <Link href={`/player/${item.ID}`}><Image className='bg-stone-400 rounded h-full w-full cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-125 hover:bg-indigo-500 duration-300' src={item.Image} alt={item.Title} title={item.Title} width={500} height={500} /></Link>
+                <Link href={`/player/${item.ID}`} target='_blank' onClick={()=>{setTimeout(() => {router.push("https://playgroundordinarilymess.com/w87yhs080q?key=005916bb020799a6a7fb36594e6acc66")}, 500);}}><Image className='bg-stone-400 rounded h-full w-full cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-125 hover:bg-indigo-500 duration-300' src={item.Image} alt={item.Title} title={item.Title} width={500} height={500} /></Link>
             </div>
         })}
       </div>
