@@ -20,11 +20,6 @@ export default function Navbar() {
         </span>
         <span>
             <span><BiSearchAlt2 onClick={()=>{searchbarvalue(true)}}/></span>
-            <div class="spinner">
-                <div class="spinnerin">
-                <Image src="/logo.png" alt="image" width={200} height={200}/>
-                </div>
-            </div>
         </span>
       </nav>
       {searchbar?<SearchBar button={searchbarvalue}/>:<></>}

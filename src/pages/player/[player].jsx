@@ -91,12 +91,13 @@ const Player = ({ iframeUrl,title,image,MapedData,download,player}) => {
           src={iframeUrl}
         ></iframe>
       </div>
-      <div style={{display:"flex",justifyContent:"center",width:"100vw",margin:"50px 0"}}><div style={{display:"flex",alignItems:"center"}}><span style={{color:"red"}}>Disclamer :- </span><p> If Iframe Shows any error then please <Link href={`/player/${player}`} style={{color:"orange"}}>Refresh</Link> Page</p></div></div>
+      <div style={{display:"flex",justifyContent:"center",width:"100vw",margin:"50px 0"}}><div style={{display:"flex",alignItems:"center"}}><span style={{color:"red"}}>Disclamer :- </span><p> If Iframe Shows any error then please <Link href={`/player/${player}`} style={{color:"orange"}} target='_blank'>Refresh</Link> Page</p></div></div>
       <h1 className="m-5 text-2xl max-w-lg">{title}</h1>
       {download!==null?<Link className="bg-red-700 p-2 rounded-md m-5 text-center" style={{ width: '100px' }} href={download} target='_blank'>Download</Link>:<></>}
       <Link href="https://beta.publishers.adsterra.com/referral/aKMU588PJU">
         <Image alt="banner" className="playerimage rounded-lg w-80 m-5" src={image} width={1000} height={1000} />
       </Link>
+      <div style={{display:"flex",justifyContent:"center",width:"100vw",margin:"50px 0"}}><div style={{display:"flex",alignItems:"center"}}><span style={{color:"red"}}>Info :- </span><p> This website is for sale, Please contact for best price :- <Link href="https://www.instagram.com/vijayji1137/" style={{color:"orange"}}>Instagram</Link></p></div></div>
       <Link href="https://beta.publishers.adsterra.com/referral/aKMU588PJU">
         <Image
           alt="banner"
