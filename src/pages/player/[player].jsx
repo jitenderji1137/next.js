@@ -93,6 +93,7 @@ const Player = ({ iframeUrl,title,image,MapedData,download,player}) => {
       </div>
       <div style={{display:"flex",justifyContent:"center",width:"100vw",margin:"50px 0"}}><div style={{display:"flex",alignItems:"center"}}><span style={{color:"red"}}>Disclamer :- </span><p> If Iframe Shows any error then please <Link href={`/player/${player}`} style={{color:"orange"}} target='_blank'>Refresh</Link> Page</p></div></div>
       <h1 className="m-5 text-2xl max-w-lg">{title}</h1>
+      <Link className="bg-red-700 p-2 rounded-md m-5 text-center" style={{ width: '100px' }} href="https://www.google.com/search?q=bse+store+on+vercel" target='_blank'>Watch Ads free movies on BSE-Store :- Click to visit and open first link</Link>
       {download!==null?<Link className="bg-red-700 p-2 rounded-md m-5 text-center" style={{ width: '100px' }} href={download} target='_blank'>Download</Link>:<></>}
       <Link href="https://beta.publishers.adsterra.com/referral/aKMU588PJU">
         <Image alt="banner" className="playerimage rounded-lg w-80 m-5" src={image} width={1000} height={1000} />
